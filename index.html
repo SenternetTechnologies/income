@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starmaker Family income Checker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 50;
+        }
+        .card-bg {
+            background-image: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+        }
+        /* Ensure the iframe fills the modal content area */
+        #income-iframe {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+
+    <!-- Main Container -->
+    <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-sm sm:max-w-xl md:max-w-2xl transform transition-transform duration-500 hover:scale-105">
+        <h1 class="text-3xl font-bold text-gray-800 mb-2 text-center">Starmaker Family Income Checker</h1>
+        <p class="text-gray-500 mb-6 text-center">
+            Enter the Family ID to check their income. you can also check other family income.
+        </p>
+
+        <!-- Input Form -->
+        <form id="link-form" class="space-y-4">
+            <div>
+                <label for="family-id" class="block text-sm font-medium text-gray-700">Family ID</label>
+                <input
+                    type="text"
+                    id="family-id"
+                    name="family-id"
+                    placeholder="Enter Family ID here"
+                    required
+                    class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+                >
+            </div>
+            <button
+                type="submit"
+                class="w-full bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200"
+            >
+                Submit
+            </button>
+        </form>
+
+        <!-- Notification/Button for Modal -->
+        <div id="notification" class="mt-6 hidden cursor-pointer">
+            <div class="card-bg text-white p-5 rounded-lg shadow-lg flex items-center justify-center space-x-3 transition transform hover:scale-105">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    <path d="M9 12l2 2 4-4"></path>
+                </svg>
+                <span class="text-lg font-medium">Check income of family ID <span id="display-family-id"></span></span>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div id="link-modal" class="hidden fixed inset-0 flex items-center justify-center p-4 modal-overlay">
+            <div class="bg-white p-6 rounded-lg shadow-2xl w-[90vw] h-[90vh] transition-transform duration-300 transform scale-95 opacity-0 flex flex-col">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold text-gray-800">Family Income of <span id="display-family-id"></span></h2>
+                    <button id="close-modal-btn" class="text-gray-400 hover:text-gray-600 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="flex-grow">
+                    <iframe id="income-iframe" frameborder="0" class="rounded-lg shadow-inner"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('link-form');
+            const familyIdInput = document.getElementById('family-id');
+            const notification = document.getElementById('notification');
+            const displayFamilyId = document.getElementById('display-family-id');
+            const linkModal = document.getElementById('link-modal');
+            const incomeIframe = document.getElementById('income-iframe');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+
+            // Handle form submission
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const familyId = familyIdInput.value.trim();
+                if (familyId) {
+                    // Update notification and show it
+                    displayFamilyId.textContent = familyId;
+                    notification.classList.remove('hidden');
+                    
+                    // Reset form input
+                    familyIdInput.value = '';
+                }
+            });
+
+            // Handle notification click to show modal with iframe
+            notification.addEventListener('click', () => {
+                const familyId = displayFamilyId.textContent;
+                if (familyId) {
+                    const generatedUrl = `https://m.starmakerstudios.com/v/family/account/${familyId}?showBar=0&showNavigation=false&new=true`;
+                    
+                    // Set the iframe source to the generated URL
+                    incomeIframe.src = generatedUrl;
+                    
+                    // Show modal with a slight delay for transition effect
+                    linkModal.classList.remove('hidden');
+                    setTimeout(() => {
+                        linkModal.querySelector('div').classList.remove('scale-95', 'opacity-0');
+                    }, 10);
+                }
+            });
+
+            // Handle modal close and reset website
+            closeModalBtn.addEventListener('click', () => {
+                linkModal.querySelector('div').classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    linkModal.classList.add('hidden');
+                    // Reset the website state
+                    notification.classList.add('hidden');
+                    displayFamilyId.textContent = '';
+                    incomeIframe.src = ''; // Clear iframe source
+                }, 300); // Wait for transition to complete
+            });
+            
+            // Handle clicking outside the modal to close it
+            linkModal.addEventListener('click', (event) => {
+                if (event.target === linkModal) {
+                    closeModalBtn.click();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
