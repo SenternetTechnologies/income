@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔥𓆩🅲🆂𓆪🔥 | Cansing Cover Event 2025 - October Month</title>
+    <title>🔥𓆩🅲🆂𓆪🔥 | Cansing Cover Event 2025 - October Month (Bright Mode)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Custom styles for animations and aesthetics */
@@ -11,64 +11,84 @@
             --primary-color: #7c3aed; /* Violet 600 */
             --secondary-color: #a78bfa; /* Violet 400 */
             --gold-color: #ffd700;
+            --light-bg: #ffffff; /* White/Light background */
+            --dark-text: #1e293b; /* Slate 800 for text */
         }
 
+        /* --- BRIGHT MODE BASE STYLES --- */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0f172a; /* Slate 900 */
-            color: #e2e8f0; /* Slate 200 */
+            background-color: #f1f5f9; /* Slate 100 - Very light gray background */
+            color: var(--dark-text); /* Slate 800 for main text */
         }
 
-        /* Keyframes for the top 3 pulsating effect */
+        /* Adjusting header for bright mode */
+        header {
+            background-color: var(--light-bg); /* White header background */
+            color: var(--dark-text);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Countdown background adjustment */
+        #countdown-timer-wrapper {
+            background-color: #f8fafc; /* Slate 50 */
+            border-color: #d1d5db; /* Gray 300 */
+        }
+
+        /* Sticky header background */
+        .sticky-header {
+            background-color: #f1f5f9; /* Match body background */
+        }
+
+        /* Content sections background */
+        section, .host-card, .official-family-card {
+            background-color: var(--light-bg);
+        }
+        
+        /* Modal Content for contrast */
+        .modal-content {
+            background-color: var(--light-bg); 
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+        }
+        .modal-title, .modal-body {
+            color: var(--dark-text);
+        }
+
+        /* --- RANKING ANIMATIONS & COLORS (ADJUSTED FOR BRIGHT MODE) --- */
         @keyframes pulse-rank {
             0%, 100% {
-                box-shadow: 0 0 10px rgba(167, 139, 250, 0.4), 0 0 20px rgba(167, 139, 250, 0.2);
+                box-shadow: 0 0 8px rgba(124, 58, 237, 0.2), 0 0 16px rgba(124, 58, 237, 0.1);
                 transform: scale(1.0);
             }
             50% {
-                box-shadow: 0 0 20px rgba(167, 139, 250, 0.8), 0 0 30px rgba(167, 139, 250, 0.4);
+                box-shadow: 0 0 16px rgba(124, 58, 237, 0.4), 0 0 24px rgba(124, 58, 237, 0.2);
                 transform: scale(1.02);
             }
         }
 
-        /* Specific styling for the top 3 ranks */
         .rank-top-3 {
             animation: pulse-rank 2s infinite ease-in-out;
-            border: 2px solid var(--secondary-color);
-            background: linear-gradient(90deg, #1e293b, #334155);
+            border: 2px solid var(--primary-color);
+            background: linear-gradient(90deg, #f8fafc, #e2e8f0); /* Light gradient */
         }
 
         .rank-1 {
             border-color: var(--gold-color);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.75) !important;
+            background: linear-gradient(90deg, #fffbeb, #fef3c7) !important; /* Extra light gold background */
         }
-
-        /* Custom Play Button SVG */
+        
+        /* Rank list header for contrast */
+        .ranking-header {
+            background-color: #e2e8f0; /* Slate 200 */
+            color: var(--dark-text);
+        }
+        
         .play-icon {
-            transition: all 0.2s ease-in-out;
+            color: var(--primary-color);
         }
         .play-icon:hover {
-            transform: scale(1.1);
             color: #3b82f6; /* Blue 500 */
-        }
-
-        /* Custom Gift Box SVG */
-        .gift-box {
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        .gift-box:hover {
-            transform: scale(1.1);
-        }
-
-        /* Custom Modal Styling */
-        .modal {
-            background-color: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(5px);
-        }
-        .modal-content {
-            background-color: #1e293b; /* Slate 800 */
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
         }
 
     </style>
@@ -77,21 +97,21 @@
 
     <div id="message-modal" class="modal fixed inset-0 z-50 flex items-center justify-center hidden">
         <div class="modal-content p-6 rounded-xl w-11/12 max-w-sm border-t-4 border-violet-500 transform transition-all duration-300 scale-95 opacity-0">
-            <h3 id="modal-title" class="text-xl font-bold mb-3 text-white">Reward!</h3>
-            <p id="modal-body" class="mb-4 text-gray-300">Starmaker 42 gold coins!</p>
+            <h3 id="modal-title" class="text-xl font-bold mb-3 modal-title">Reward!</h3>
+            <p id="modal-body" class="mb-4 text-gray-700 modal-body">Starmaker 42 gold coins!</p>
             <button id="modal-close-btn" class="w-full bg-violet-600 hover:bg-violet-700 text-white font-semibold py-2 rounded-lg transition duration-150">Got It</button>
         </div>
     </div>
 
 
     <div class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
-        <header class="text-center py-6 mb-8 bg-slate-800 rounded-xl shadow-lg">
-            <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Cansing Cover Event October 2025</h1>
-            <p class="text-xl sm:text-2xl text-violet-400 mt-1">#singwithcs</p>
+        <header class="text-center py-6 mb-8 bg-white rounded-xl shadow-lg">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-800 tracking-tight">Cansing Cover Event October 2025</h1>
+            <p class="text-xl sm:text-2xl text-violet-600 mt-1">#singwithcs</p>
 
-            <div class="mt-4 p-3 bg-slate-900 rounded-lg inline-block mx-auto border border-violet-600">
-                <p class="text-xs uppercase font-semibold text-gray-400 mb-1">Event Ends In</p>
-                <div id="countdown-timer" class="flex justify-center space-x-2 sm:space-x-4 text-white font-mono text-lg sm:text-2xl">
+            <div id="countdown-timer-wrapper" class="mt-4 p-3 bg-slate-50 rounded-lg inline-block mx-auto border border-gray-300">
+                <p class="text-xs uppercase font-semibold text-gray-500 mb-1">Event Ends In</p>
+                <div id="countdown-timer" class="flex justify-center space-x-2 sm:space-x-4 text-slate-800 font-mono text-lg sm:text-2xl">
                     <span id="days">00D</span>
                     <span class="text-violet-500">:</span>
                     <span id="hours">00H</span>
@@ -102,33 +122,33 @@
                 </div>
             </div>
         </header>
-
-        <div class="flex border-b border-violet-700 mb-6 sticky top-0 bg-slate-900 z-10 rounded-t-xl">
-            <button id="tab-home" class="flex-1 py-3 text-center text-lg font-semibold transition-colors duration-200 border-b-2 border-transparent text-white hover:bg-slate-700 rounded-tl-lg" onclick="showTab('home')">
+        
+        <div class="flex border-b border-gray-300 mb-6 sticky top-0 bg-f1f5f9 z-10 rounded-t-xl sticky-header">
+            <button id="tab-home" class="flex-1 py-3 text-center text-lg font-semibold transition-colors duration-200 border-b-2 border-transparent text-slate-800 hover:bg-gray-100 rounded-tl-lg" onclick="showTab('home')">
                 Home
             </button>
-            <button id="tab-ranking" class="flex-1 py-3 text-center text-lg font-semibold transition-colors duration-200 border-b-2 border-transparent text-violet-400 hover:bg-slate-700 rounded-tr-lg" onclick="showTab('ranking')">
+            <button id="tab-ranking" class="flex-1 py-3 text-center text-lg font-semibold transition-colors duration-200 border-b-2 border-transparent text-violet-600 hover:bg-gray-100 rounded-tr-lg" onclick="showTab('ranking')">
                 Event Ranking
             </button>
         </div>
 
         <div id="content-home" class="tab-content space-y-8">
-            <section class="p-6 bg-slate-800 rounded-xl shadow-xl">
-                <h2 class="text-2xl font-bold text-violet-400 mb-3">Welcome to 🔥𓆩🅲🆂𓆪🔥 | CanSing தமிழ் Family</h2>
-                <p class="text-gray-300">welcome to Cansing family, In starmaker cansing family created on 2019, we have 4 region teams, Mainly located  <b> Malaysia</b>. in our family conducts and promote some cover events under starmaker app. Users just post songs on those account, our API were redirect the hastag and add make connection with starmaker host for manage covers, so users can participate our events. <br> here we didnot use or against our starmaker team policy. Privacy starts with understanding.</p>
+            <section class="p-6 bg-white rounded-xl shadow-lg">
+                <h2 class="text-2xl font-bold text-violet-600 mb-3">Welcome to 🔥𓆩🅲🆂𓆪🔥 | CanSing தமிழ் Family</h2>
+                <p class="text-gray-700">welcome to Cansing family, In starmaker cansing family created on 2019, we have 4 region teams, Mainly located  <b> Malaysia</b>. in our family conducts and promote some cover events under starmaker app. Users just post songs on those account, our API were redirect the hastag and add make connection with starmaker host for manage covers, so users can participate our events. <br> here we didnot use or against our starmaker team policy. Privacy starts with understanding.</p>
             </section>
 
             <div class="grid md:grid-cols-2 gap-6">
-                <section class="p-6 bg-slate-800 rounded-xl shadow-xl border-t-4 border-violet-500">
-                    <h3 class="text-xl font-semibold text-violet-400 mb-3">Event Details</h3>
-                    <p class="text-sm text-gray-400">This event runs throughout the month, culminating in the final ranking announcement on **October 14th**. Entries are judged on vocal performance, musical arrangement, and overall production quality. Good luck!
+                <section class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-violet-500">
+                    <h3 class="text-xl font-semibold text-violet-600 mb-3">Event Details</h3>
+                    <p class="text-sm text-gray-600">This event runs throughout the month, culminating in the final ranking announcement on **October 14th**. Entries are judged on vocal performance, musical arrangement, and overall production quality. Good luck!
 <br>
 <b>How to ranking were generates</b><br>
 <li>Total likes + total comments + shares + score of song</li></p>
                 </section>
-                <section class="p-6 bg-slate-800 rounded-xl shadow-xl border-t-4 border-violet-500">
-                    <h3 class="text-xl font-semibold text-violet-400 mb-3">Rewards Structure</h3>
-                    <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm">
+                <section class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-violet-500">
+                    <h3 class="text-xl font-semibold text-violet-600 mb-3">Rewards Structure</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
                         <li>🥇 **1st Place:** Special prize (42 Gold Coins) + Featured Post</li>
                         <li>🥈 **2nd Place:** Featured post</li>
                         <li>🥉 **3rd Place:** Featured post</li>
@@ -137,9 +157,9 @@
                 </section>
             </div>
 
-            <section class="p-6 bg-slate-800 rounded-xl shadow-xl">
-                <h3 class="text-2xl font-bold text-violet-400 mb-4">How to Participate</h3>
-                <ol class="space-y-3 text-gray-300 text-base">
+            <section class="p-6 bg-white rounded-xl shadow-lg">
+                <h3 class="text-2xl font-bold text-violet-600 mb-4">How to Participate</h3>
+                <ol class="space-y-3 text-gray-700 text-base">
                     <li>1. **Record:** Produce a high-quality cover song video or audio. Duets or Old posts cant Eligible.</li>
                     <li>2. **Upload:** Share your post with <b>#singwithcs</b> hastag. non-hastag posts can enter event</li>
                     <li>3. **Check event:** This events link were shared after your song post.</li>
@@ -147,46 +167,44 @@
                 </ol>
             </section>
 
-            <h2 class="text-2xl font-bold text-white mt-8 mb-4">Event Hosts & Team</h2>
+            <h2 class="text-2xl font-bold text-slate-800 mt-8 mb-4">Event Hosts & Team</h2>
             <div class="grid md:grid-cols-2 gap-6">
-                <div class="p-4 bg-slate-800 rounded-xl shadow-2xl flex flex-col items-center text-center">
+                <div class="p-4 bg-white rounded-xl shadow-xl flex flex-col items-center text-center host-card">
                     <img src="https://improxy.starmakerstudios.com/tools/im/200/production/users/844424932338727/profile.jpg?ts=1759301580" class="w-24 h-24 rounded-full object-cover mb-3 border-4 border-violet-500">
-                    <h4 class="text-xl font-semibold text-white">🔥𓆩🅲🆂𓆪🔥🖤🄴ує༗🄺أℓℓєr𓅋𝆺𝅥𒁍</h4>
-                    <p class="text-sm text-violet-400 mb-3">Cansing Events Official Admin</p>
+                    <h4 class="text-xl font-semibold text-slate-800">🔥𓆩🅲🆂𓆪🔥🖤🄴ує༗🄺أℓℓєr𓅋𝆺𝅥𒁍</h4>
+                    <p class="text-sm text-violet-600 mb-3">Cansing Events Official Admin</p>
                     <a href="https://starmaker.onelink.me/v4ei/swmpxii4" class="bg-violet-600 hover:bg-violet-700 text-white text-sm font-medium py-2 px-4 rounded-lg transition duration-150">View Profile</a>
              
                     </div>
                 </div>
 
-                <div class="p-4 bg-slate-800 rounded-xl shadow-2xl flex flex-col items-center text-center">
+                <div class="p-4 bg-white rounded-xl shadow-xl flex flex-col items-center text-center host-card">
                     <img src="https://improxy.starmakerstudios.com/tools/im/200/production/users/4222124653674120/profile.jpg?ts=1757686010" alt="Admin B Profile" class="w-24 h-24 rounded-full object-cover mb-3 border-4 border-violet-500">
-                    <h4 class="text-xl font-semibold text-white">"*🇪🇸*𝒦𝙢𝕒𐍃𐍃₀₀➐*🇪🇸*</h4>
-                    <p class="text-sm text-violet-400 mb-3">Contest Coordinator & Cansing Host</p>
+                    <h4 class="text-xl font-semibold text-slate-800">"*🇪🇸*𝒦𝙢𝕒𐍃𐍃₀₀➐*🇪🇸*</h4>
+                    <p class="text-sm text-violet-600 mb-3">Contest Coordinator & Cansing Host</p>
                     <a href="https://starmaker.onelink.me/v4ei/jns9d13k" class="bg-violet-600 hover:bg-violet-700 text-white text-sm font-medium py-2 px-4 rounded-lg transition duration-150">View Profile</a>
                  
                 </div>
             </div>
 
-            <h3 class="text-xl font-bold text-white mt-8 mb-4">Official Event Family</h3>
-            <div class="p-6 bg-slate-800 rounded-xl shadow-2xl flex flex-col sm:flex-row items-center sm:space-x-4">
+            <h3 class="text-xl font-bold text-slate-800 mt-8 mb-4">Official Event Family</h3>
+            <div class="p-6 bg-white rounded-xl shadow-xl flex flex-col sm:flex-row items-center sm:space-x-4 official-family-card">
                 <img src="https://starmaker.onelink.me/v4ei/p1kmrz7t" alt="Host Family" class="w-24 h-24 rounded-full object-cover mb-4 sm:mb-0 border-4 border-violet-500">
                 <div class="text-center sm:text-left">
-                    <p class="text-2xl font-bold text-white">🔥𓆩🅲🆂𓆪🔥🖤🄴ує༗🄺أℓℓєr𓅋𝆺𝅥𒁍 |  CαηSιηg Family🇲🇾</p>
-                    <p class="text-md text-violet-400">Official ID: <span class="font-mono text-white">668332</span></p>
-                    <p class="text-sm text-gray-400 mt-1">Dedicated to promoting emerging cover song talent globally.</p>
+                    <p class="text-2xl font-bold text-slate-800">🔥𓆩🅲🆂𓆪🔥🖤🄴ує༗🄺أℓℓєr𓅋𝆺𝅥𒁍 |  CαηSιηg Family🇲🇾</p>
+                    <p class="text-md text-violet-600">Official ID: <span class="font-mono text-slate-800">668332</span></p>
+                    <p class="text-sm text-gray-600 mt-1">Dedicated to promoting emerging cover song talent globally.</p>
                 </div>
             </div>
         </div>
 
         <div id="content-ranking" class="tab-content hidden space-y-4">
-            <h2 class="text-3xl font-bold text-violet-400 mb-6 text-center">Official Contest Rankings</h2>
+            <h2 class="text-3xl font-bold text-violet-600 mb-6 text-center">Official Contest Rankings</h2>
 
-            <div class="bg-slate-700/50 p-3 rounded-lg flex text-xs sm:text-sm font-semibold text-gray-300 uppercase sticky top-[5.25rem] z-5" style="top: calc(3rem + 1px);">
+            <div class="ranking-header p-3 rounded-lg flex text-xs sm:text-sm font-semibold uppercase sticky top-[5.25rem] z-5" style="top: calc(3rem + 1px);">
                 <span class="w-1/12 text-center">#</span>
-                <span class="w-3/12 block">User</span> 
-                <span class="w-3/12 truncate pl-1 sm:pl-2">Song Title</span>
-                <span class="w-2/12 text-center hidden sm:block">Link</span>
-                <span class="w-3/12 text-center">Total Score</span>
+                <span class="w-8/12 block pl-2">Participant & Song</span> 
+                <span class="w-3/12 text-center">Score</span>
             </div>
 
             <div id="ranking-list" class="space-y-3">
@@ -195,27 +213,18 @@
 
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
     <script>
         // --- DATA SECTION ---
-        // Manually created ranking data. The ranking will be automatically calculated and ordered by (songScore + totalScore).
+        // Added some mock data for better visualization in the bright mode.
         const initialRankingData = [
             // Unordered data, will be sorted by combined score
-            { profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/844424932338727/profile.jpg?ts=1759301580', username: '🔥𓆩🅲🆂𓆪🔥🖤🄴ує༗🄺أℓℓєr𓅋𝆺𝅥𒁍', coverSong: 'How to join Cansing cover event (Introduction)', songLink: 'https://starmaker.onelink.me/v4ei/um9qzwnc', songScore: 100, totalScore: 0, id: 1 },
-            
-
-
+            { profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/844424932338727/profile.jpg?ts=1759301580', username: '🔥𓆩🅲🆂𓆪🔥🖤🄴ує༗🄺أℓℓєr𓅋𝆺𝅥𒁍', coverSong: 'How to join Cansing cover event (Introduction)', songLink: 'https://starmaker.onelink.me/v4ei/um9qzwnc', songScore: 500, totalScore: 1000, id: 1 },
+            { profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/4222124653674120/profile.jpg?ts=1757686010', username: '"*🇪🇸*𝒦𝙢𝕒𐍃𐍃₀₀➐*🇪🇸*', coverSong: 'My Heart Will Go On (Celine Dion Cover)', songLink: 'https://starmaker.onelink.me/v4ei/jns9d13k', songScore: 800, totalScore: 650, id: 2 },
+            { profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/1234567890123456/profile.jpg?ts=1750000000', username: 'SingingStar_Rani', coverSong: 'Anbe Sivam (Tamil Melody)', songLink: 'https://starmaker.onelink.me/v4ei/anotherlink', songScore: 550, totalScore: 400, id: 3 },
+            { profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/9876543210987654/profile.jpg?ts=1750000001', username: 'The_Voice_Of_Karthik', coverSong: 'Kannodu Kanbathellam (Cover Version)', songLink: 'https://starmaker.onelink.me/v4ei/thirdlink', songScore: 350, totalScore: 350, id: 4 },
+            { profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/1122334455667788/profile.jpg?ts=1750000002', username: 'MelodyKing77', coverSong: 'Ranjithame (Film Song)', songLink: 'https://starmaker.onelink.me/v4ei/fourthlink', songScore: 200, totalScore: 320, id: 5 },
         ];
+
 
 
 
@@ -271,8 +280,8 @@
 
             // Deactivate all tabs
             document.querySelectorAll('button[id^="tab-"]').forEach(tab => {
-                tab.classList.remove('border-violet-500', 'text-white', 'border-b-2');
-                tab.classList.add('text-violet-400', 'border-transparent');
+                tab.classList.remove('border-violet-500', 'text-slate-800', 'border-b-2');
+                tab.classList.add('text-violet-600', 'border-transparent');
             });
 
             // Show the selected content
@@ -284,8 +293,8 @@
             // Activate the selected tab
             const selectedTab = document.getElementById(`tab-${tabName}`);
             if (selectedTab) {
-                selectedTab.classList.add('border-violet-500', 'text-white');
-                selectedTab.classList.remove('text-violet-400', 'border-transparent');
+                selectedTab.classList.add('border-violet-500', 'text-slate-800');
+                selectedTab.classList.remove('text-violet-600', 'border-transparent');
             }
         }
 
@@ -331,7 +340,7 @@
             }
         });
 
-        // --- RANKING LOGIC ---
+        // --- RANKING LOGIC (REFRESHED FOR NEW LAYOUT) ---
 
         function renderRanking() {
             const rankingList = document.getElementById('ranking-list');
@@ -351,65 +360,55 @@
                 const isTop3 = rank <= 3;
                 const isFirst = rank === 1;
 
-                // Determine base styling (approx. 20% height area on small screens, adjusts with content)
-                let cardClasses = 'flex items-center p-3 rounded-xl transition duration-300 transform hover:scale-[1.01] shadow-md border-2 border-slate-700 h-[20vh] sm:h-auto';
+                // Determine base styling
+                let cardClasses = 'flex items-center p-3 rounded-xl transition duration-300 transform hover:scale-[1.01] shadow-md border-2 border-gray-200';
 
                 if (isFirst) {
-                    cardClasses += ' rank-1 bg-gradient-to-r from-yellow-900/50 to-slate-800/80';
+                    cardClasses += ' rank-1'; // Custom gold styling
                 } else if (isTop3) {
-                    cardClasses += ' rank-top-3 bg-slate-800/80';
+                    cardClasses += ' rank-top-3'; // Custom violet pulse styling
                 } else {
-                    cardClasses += ' bg-slate-800';
+                    cardClasses += ' bg-white';
                 }
 
                 // --- GIFT BOX SVG ---
                 const giftBoxSvg = `
-                    <div onclick="claimReward('${user.username}')" class="gift-box ml-2 p-1 rounded-full bg-violet-500 hover:bg-violet-600 text-white flex-shrink-0" title="Claim Prize!">
-                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <div onclick="claimReward('${user.username}', ${REWARD_AMOUNT})" class="gift-box ml-1 p-1 rounded-full bg-violet-600 hover:bg-violet-700 text-white flex-shrink-0" title="Claim Prize!">
+                        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M5.404 14.596A6.5 6.5 0 0110 8V2a.5.5 0 011 0v6a6.5 6.5 0 014.596 6.596A.5.5 0 0115 15.5H5a.5.5 0 01-.596-.404zM16 17H4a1 1 0 010-2h12a1 1 0 010 2z" clip-rule="evenodd"></path>
                             <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
                         </svg>
                     </div>
                 `;
 
-                // --- RANKING ENTRY HTML ---
+                // --- RANKING ENTRY HTML (NEW TWO-ROW STRUCTURE) ---
                 const entryHTML = `
                     <div class="${cardClasses}">
-                        <div class="w-1/12 text-center flex flex-col items-center justify-center space-y-1 sm:space-y-0 flex-shrink-0">
-                            <span class="text-xl sm:text-2xl font-black ${isFirst ? 'text-yellow-400' : isTop3 ? 'text-violet-400' : 'text-gray-300'}">${rank}</span>
+                        
+                        <div class="w-1/12 text-center flex flex-col items-center justify-center space-y-1 flex-shrink-0">
+                            <span class="text-xl sm:text-2xl font-black ${isFirst ? 'text-yellow-500' : isTop3 ? 'text-violet-600' : 'text-gray-600'}">${rank}</span>
                             ${isFirst ? giftBoxSvg : ''}
                         </div>
 
-                        <div class="w-3/12 flex items-center space-x-1 sm:space-x-3 flex-shrink-0">
-                            <img src="${user.profilePic}" alt="${user.username} Profile" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover border border-slate-600">
-                            <span class="text-xs sm:text-base font-medium text-white truncate hidden sm:block">${user.username}</span>
-                            <span class="text-xs font-medium text-white truncate sm:hidden">${user.username.length > 8 ? user.username.substring(0, 8) + '...' : user.username}</span>
-                        </div>
-
-                        <div class="w-3/12 sm:w-4/12 px-1 sm:px-2 flex flex-col justify-center">
-                            <p class="text-xs sm:text-lg font-semibold text-white truncate">${user.coverSong}</p>
-                            <div class="flex space-x-1 text-xs mt-1 text-gray-400 hidden sm:flex">
-                                <span>Song: ${user.songScore}</span>
-                                <span>|</span>
-                                <span>Total score: ${user.totalScore}</span>
+                        <div class="w-8/12 flex flex-col justify-center pl-2">
+                            <div class="flex items-center space-x-2 mb-1">
+                                <img src="${user.profilePic}" alt="${user.username} Profile" class="w-8 h-8 rounded-full object-cover border border-gray-300 flex-shrink-0">
+                                <span class="text-sm sm:text-base font-bold text-slate-800 truncate">${user.username}</span>
                             </div>
+                            
+                            <div class="flex items-center justify-between space-x-2 pr-1">
+                                <p class="text-xs sm:text-sm font-medium text-gray-600 truncate">${user.coverSong}</p>
+                                <a href="${user.songLink}" target="_blank" title="Play Song: ${user.coverSong}" class="play-icon text-violet-600 hover:text-blue-600 flex-shrink-0">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
+                                </a>
+                            </div>
+
                         </div>
 
-                        <div class="w-2/12 hidden sm:flex justify-center items-center flex-shrink-0">
-                            <a href="${user.songLink}" target="_blank" title="Play Song: ${user.coverSong}" class="play-icon text-violet-400 hover:text-blue-400">
-                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
-                            </a>
-                        </div>
-
-                        <div class="w-3/12 sm:w-2/12 text-center flex flex-col items-center justify-center flex-shrink-0">
-                            <span class="text-xl font-extrabold ${isFirst ? 'text-yellow-300' : 'text-green-400'}">${user.combinedScore}</span>
-                            <span class="text-xs text-gray-400 hidden sm:block">Pts</span>
-                        </div>
-
-                        <div class="w-2/12 flex sm:hidden justify-center items-center flex-shrink-0">
-                             <a href="${user.songLink}" target="_blank" title="Play Song: ${user.coverSong}" class="play-icon text-violet-400 hover:text-blue-400">
-                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
-                            </a>
+                        <div class="w-3/12 text-center flex flex-col items-center justify-center flex-shrink-0">
+                            <span class="text-xl font-extrabold ${isFirst ? 'text-yellow-600' : 'text-green-600'}">${user.combinedScore}</span>
+                            <span class="text-xs text-gray-500">Pts</span>
+                            <span class="text-xs text-gray-400 hidden sm:block">(${user.songScore}+${user.totalScore})</span>
                         </div>
                     </div>
                 `;
@@ -418,8 +417,8 @@
         }
 
         // 1st Place Gift Box Handler
-        function claimReward(username) {
-            showModal('Reward: !', `${username} will get the 1st place prize: ${REWARD_AMOUNT} gold coins in starmaker!`);
+        function claimReward(username, amount) {
+            showModal('Reward Claimed!', `${username} has claimed the 1st place prize: ${amount} gold coins!`);
         }
 
         // Run the ranking rendering when the DOM is ready
