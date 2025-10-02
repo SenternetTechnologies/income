@@ -3,92 +3,458 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Starmaker Family Income Checker</title>
+    <title>Cansing Cover Event 2025 - October Month</title>
+    <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Custom styles for animations and aesthetics */
+        :root {
+            --primary-color: #7c3aed; /* Violet 600 */
+            --secondary-color: #a78bfa; /* Violet 400 */
+            --gold-color: #ffd700;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6;
+            background-color: #0f172a; /* Slate 900 */
+            color: #e2e8f0; /* Slate 200 */
         }
-        .card-bg {
-            background-image: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+
+        /* Keyframes for the top 3 pulsating effect */
+        @keyframes pulse-rank {
+            0%, 100% {
+                box-shadow: 0 0 10px rgba(167, 139, 250, 0.4), 0 0 20px rgba(167, 139, 250, 0.2);
+                transform: scale(1.0);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(167, 139, 250, 0.8), 0 0 30px rgba(167, 139, 250, 0.4);
+                transform: scale(1.02);
+            }
         }
+
+        /* Specific styling for the top 3 ranks */
+        .rank-top-3 {
+            animation: pulse-rank 2s infinite ease-in-out;
+            border: 2px solid var(--secondary-color);
+            background: linear-gradient(90deg, #1e293b, #334155);
+        }
+
+        .rank-1 {
+            border-color: var(--gold-color);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Custom Play Button SVG */
+        .play-icon {
+            transition: all 0.2s ease-in-out;
+        }
+        .play-icon:hover {
+            transform: scale(1.1);
+            color: #3b82f6; /* Blue 500 */
+        }
+
+        /* Custom Gift Box SVG */
+        .gift-box {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .gift-box:hover {
+            transform: scale(1.1);
+        }
+
+        /* Custom Modal Styling */
+        .modal {
+            background-color: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background-color: #1e293b; /* Slate 800 */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
     </style>
 </head>
-<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+<body class="min-h-screen">
 
-    <!-- Main Container -->
-    <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-sm sm:max-w-xl md:max-w-2xl transform transition-transform duration-500 hover:scale-105">
-        <h1 class="text-3xl font-bold text-gray-800 mb-2 text-center">Starmaker Family Income Checker</h1>
-        <p class="text-gray-500 mb-6 text-center">
-            Enter the Family ID to check their income. You can also check other family income.
-        </p>
-
-        <!-- Input Form -->
-        <form id="link-form" class="space-y-4">
-            <div>
-                <label for="family-id" class="block text-sm font-medium text-gray-700">Family ID</label>
-                <input
-                    type="text"
-                    id="family-id"
-                    name="family-id"
-                    placeholder="Enter Family ID here"
-                    required
-                    class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
-                >
-            </div>
-            <button
-                type="submit"
-                class="w-full bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200"
-            >
-                Submit
-            </button>
-        </form>
-
-        <!-- Notification/Button for Redirect -->
-        <div id="notification" class="mt-6 hidden cursor-pointer">
-            <div class="card-bg text-white p-5 rounded-lg shadow-lg flex items-center justify-center space-x-3 transition transform hover:scale-105">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                    <path d="M9 12l2 2 4-4"></path>
-                </svg>
-                <span class="text-lg font-medium">Click to check income of family ID <span id="display-family-id"></span></span>
-            </div>
+    <!-- Global Message Box (for alerts/confirmations) -->
+    <div id="message-modal" class="modal fixed inset-0 z-50 flex items-center justify-center hidden">
+        <div class="modal-content p-6 rounded-xl w-11/12 max-w-sm border-t-4 border-violet-500 transform transition-all duration-300 scale-95 opacity-0">
+            <h3 id="modal-title" class="text-xl font-bold mb-3 text-white">Reward Claimed!</h3>
+            <p id="modal-body" class="mb-4 text-gray-300">You received 42 gold coins!</p>
+            <button id="modal-close-btn" class="w-full bg-violet-600 hover:bg-violet-700 text-white font-semibold py-2 rounded-lg transition duration-150">Got It</button>
         </div>
     </div>
 
+
+    <div class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+        <!-- Header and Timer -->
+        <header class="text-center py-6 mb-8 bg-slate-800 rounded-xl shadow-lg">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Cansing Cover Event 2025</h1>
+            <p class="text-xl sm:text-2xl text-violet-400 mt-1">October Month Edition</p>
+
+            <div class="mt-4 p-3 bg-slate-900 rounded-lg inline-block mx-auto border border-violet-600">
+                <p class="text-xs uppercase font-semibold text-gray-400 mb-1">Event Ends In</p>
+                <div id="countdown-timer" class="flex justify-center space-x-2 sm:space-x-4 text-white font-mono text-lg sm:text-2xl">
+                    <span id="days">00D</span>
+                    <span class="text-violet-500">:</span>
+                    <span id="hours">00H</span>
+                    <span class="text-violet-500">:</span>
+                    <span id="minutes">00M</span>
+                    <span class="text-violet-500">:</span>
+                    <span id="seconds">00S</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Tabs Navigation -->
+        <div class="flex border-b border-violet-700 mb-6 sticky top-0 bg-slate-900 z-10 rounded-t-xl">
+            <button id="tab-home" class="flex-1 py-3 text-center text-lg font-semibold transition-colors duration-200 border-b-2 border-transparent text-white hover:bg-slate-700 rounded-tl-lg" onclick="showTab('home')">
+                Home
+            </button>
+            <button id="tab-ranking" class="flex-1 py-3 text-center text-lg font-semibold transition-colors duration-200 border-b-2 border-transparent text-violet-400 hover:bg-slate-700 rounded-tr-lg" onclick="showTab('ranking')">
+                Ranking
+            </button>
+        </div>
+
+        <!-- Home Tab Content -->
+        <div id="content-home" class="tab-content space-y-8">
+            <!-- Welcome Section -->
+            <section class="p-6 bg-slate-800 rounded-xl shadow-xl">
+                <h2 class="text-2xl font-bold text-violet-400 mb-3">Welcome to Cansing 2025!</h2>
+                <p class="text-gray-300">Dive into the world of cover music! We invite all talented singers and musicians to participate in our annual October Cover Event. Show off your unique voice and interpretation of your favorite songs and compete for amazing prizes.</p>
+            </section>
+
+            <!-- About Event & Rewards -->
+            <div class="grid md:grid-cols-2 gap-6">
+                <section class="p-6 bg-slate-800 rounded-xl shadow-xl border-t-4 border-violet-500">
+                    <h3 class="text-xl font-semibold text-violet-400 mb-3">Event Details</h3>
+                    <p class="text-sm text-gray-400">This event runs throughout the month, culminating in the final ranking announcement on **October 14th**. Entries are judged on vocal performance, musical arrangement, and overall production quality. Good luck!</p>
+                </section>
+                <section class="p-6 bg-slate-800 rounded-xl shadow-xl border-t-4 border-violet-500">
+                    <h3 class="text-xl font-semibold text-violet-400 mb-3">Rewards Structure</h3>
+                    <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm">
+                        <li>🥇 **1st Place:** Special prize (42 Gold Coins) + Grand Trophy + Featured Post.</li>
+                        <li>🥈 **2nd Place:** Silver Medal + Studio Equipment Voucher.</li>
+                        <li>🥉 **3rd Place:** Bronze Medal + Premium Music Software License.</li>
+                        <li>**Top 10:** Official Certificate of Recognition.</li>
+                    </ul>
+                </section>
+            </div>
+
+            <!-- How to Participate -->
+            <section class="p-6 bg-slate-800 rounded-xl shadow-xl">
+                <h3 class="text-2xl font-bold text-violet-400 mb-4">How to Participate</h3>
+                <ol class="space-y-3 text-gray-300 text-base">
+                    <li>1. **Record:** Produce a high-quality cover song video or audio.</li>
+                    <li>2. **Upload:** Share your entry on a public platform (YouTube, SoundCloud, etc.).</li>
+                    <li>3. **Submit:** Fill out the official submission form (link will be provided soon).</li>
+                    <li>4. **Wait:** Our judges will evaluate your entry based on the two core criteria (Song Score & Total Score).</li>
+                </ol>
+            </section>
+
+            <!-- Host/Admin Details -->
+            <h2 class="text-2xl font-bold text-white mt-8 mb-4">Event Hosts & Team</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Admin 1 -->
+                <div class="p-4 bg-slate-800 rounded-xl shadow-2xl flex flex-col items-center text-center">
+                    <img src="https://improxy.starmakerstudios.com/tools/im/200/production/users/844424932338727/profile.jpg?ts=1759301580" class="w-24 h-24 rounded-full object-cover mb-3 border-4 border-violet-500">
+                    <h4 class="text-xl font-semibold text-white">🔥𓆩🅲🆂𓆪🔥🖤🄴ує༗🄺أℓℓєr𓅋𝆺𝅥𒁍</h4>
+                    <p class="text-sm text-violet-400 mb-3">Cansing Events Admin</p>
+                    <a href="#" class="bg-violet-600 hover:bg-violet-700 text-white text-sm font-medium py-2 px-4 rounded-lg transition duration-150">View Profile</a>
+                    <div class="flex space-x-3 mt-3">
+                        <a href="mailto:senternettechnologies@gmail.com" target="_blank" title="Email" class="text-gray-400 hover:text-violet-400 transition duration-150">
+                             <!-- Email Icon -->
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+                        </a>
+                        <a href="https://wa.me/910000000000" target="_blank" title="WhatsApp" class="text-gray-400 hover:text-violet-400 transition duration-150">
+                             <!-- WhatsApp Icon -->
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-2-3a1 1 0 00-1 1v2a1 1 0 102 0v-2a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Admin 2 -->
+                <div class="p-4 bg-slate-800 rounded-xl shadow-2xl flex flex-col items-center text-center">
+                    <img src="https://placehold.co/100x100/4c3f73/ffffff?text=Admin+B" alt="Admin B Profile" class="w-24 h-24 rounded-full object-cover mb-3 border-4 border-violet-500">
+                    <h4 class="text-xl font-semibold text-white">Priya S.</h4>
+                    <p class="text-sm text-violet-400 mb-3">Contest Coordinator</p>
+                    <a href="#" class="bg-violet-600 hover:bg-violet-700 text-white text-sm font-medium py-2 px-4 rounded-lg transition duration-150">View Profile</a>
+                    <div class="flex space-x-3 mt-3">
+                        <a href="mailto:priya.s@cansing.com" target="_blank" title="Email" class="text-gray-400 hover:text-violet-400 transition duration-150">
+                             <!-- Email Icon -->
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+                        </a>
+                        <a href="https://wa.me/910000000000" target="_blank" title="WhatsApp" class="text-gray-400 hover:text-violet-400 transition duration-150">
+                             <!-- WhatsApp Icon -->
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-2-3a1 1 0 00-1 1v2a1 1 0 102 0v-2a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Host Family Details -->
+            <h3 class="text-xl font-bold text-white mt-8 mb-4">Official Event Family</h3>
+            <div class="p-6 bg-slate-800 rounded-xl shadow-2xl flex flex-col sm:flex-row items-center sm:space-x-4">
+                <img src="https://placehold.co/120x120/5a3d73/ffffff?text=Cansing+Family" alt="Host Family" class="w-24 h-24 rounded-full object-cover mb-4 sm:mb-0 border-4 border-violet-500">
+                <div class="text-center sm:text-left">
+                    <p class="text-2xl font-bold text-white">The Cansing Collective</p>
+                    <p class="text-md text-violet-400">Official ID: <span class="font-mono text-white">CSNG-2025-OCT</span></p>
+                    <p class="text-sm text-gray-400 mt-1">Dedicated to promoting emerging cover song talent globally.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ranking Tab Content -->
+        <div id="content-ranking" class="tab-content hidden space-y-4">
+            <h2 class="text-3xl font-bold text-violet-400 mb-6 text-center">Official Contest Rankings</h2>
+
+            <div class="bg-slate-700/50 p-3 rounded-lg flex text-xs sm:text-sm font-semibold text-gray-300 uppercase sticky top-[5.25rem] z-5" style="top: calc(3rem + 1px);">
+                <span class="w-1/12 text-center">#</span>
+                <span class="w-3/12 hidden sm:block">User</span>
+                <span class="w-4/12 sm:w-3/12 truncate pl-2">Song Title</span>
+                <span class="w-2/12 text-center hidden sm:block">Link</span>
+                <span class="w-3/12 sm:w-3/12 text-center">Total Score</span>
+            </div>
+
+            <div id="ranking-list" class="space-y-3">
+                <!-- Ranking entries will be dynamically inserted here -->
+            </div>
+        </div>
+
+    </div>
+
     <script>
+        // --- DATA SECTION ---
+        // Manually created ranking data. The ranking will be automatically calculated and ordered by (songScore + totalScore).
+        const initialRankingData = [
+            // Unordered data, will be sorted by combined score
+            { profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/844424932338727/profile.jpg?ts=1759301580', username: '🔥𓆩🅲🆂𓆪🔥🖤🄴ує༗🄺أℓℓєr𓅋𝆺𝅥𒁍', coverSong: 'How to join Cansing cover event (Introduction)', songLink: 'https://www.youtube.com/watch?v=MMS_A3Y', songScore: 95, totalScore: 100, id: 1 },
+            
+        ];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // --- GLOBAL CONSTANTS ---
+        const EVENT_END_DATE = new Date('October 14, 2025 12:00:00 PM').getTime();
+        const REWARD_AMOUNT = 42;
+
+        // --- TIMER LOGIC ---
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = EVENT_END_DATE - now;
+
+            if (distance < 0) {
+                document.getElementById('countdown-timer').innerHTML = "EVENT HAS ENDED!";
+                clearInterval(countdownInterval);
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0') + 'D';
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0') + 'H';
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0') + 'M';
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0') + 'S';
+        }
+
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown(); // Run immediately
+
+        // --- TAB SWITCHING LOGIC ---
+        function showTab(tabName) {
+            // Hide all contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            // Deactivate all tabs
+            document.querySelectorAll('button[id^="tab-"]').forEach(tab => {
+                tab.classList.remove('border-violet-500', 'text-white', 'border-b-2');
+                tab.classList.add('text-violet-400', 'border-transparent');
+            });
+
+            // Show the selected content
+            const selectedContent = document.getElementById(`content-${tabName}`);
+            if (selectedContent) {
+                selectedContent.classList.remove('hidden');
+            }
+
+            // Activate the selected tab
+            const selectedTab = document.getElementById(`tab-${tabName}`);
+            if (selectedTab) {
+                selectedTab.classList.add('border-violet-500', 'text-white');
+                selectedTab.classList.remove('text-violet-400', 'border-transparent');
+            }
+        }
+
+        // Set default tab on load
         document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('link-form');
-            const familyIdInput = document.getElementById('family-id');
-            const notification = document.getElementById('notification');
-            const displayFamilyId = document.getElementById('display-family-id');
-
-            // Handle form submission
-            form.addEventListener('submit', (event) => {
-                event.preventDefault();
-                const familyId = familyIdInput.value.trim();
-                if (familyId) {
-                    // Update notification and show it
-                    displayFamilyId.textContent = familyId;
-                    notification.classList.remove('hidden');
-                    
-                    // Reset form input
-                    familyIdInput.value = '';
-                }
-            });
-
-            // Handle notification click to redirect to the generated link
-            notification.addEventListener('click', () => {
-                const familyId = displayFamilyId.textContent;
-                if (familyId) {
-                    const generatedUrl = `https://m.starmakerstudios.com/v/family/account/${familyId}?showBar=0&showNavigation=false&new=true`;
-                    window.location.href = generatedUrl; // Directly open the link
-                }
-            });
+            showTab('home');
         });
-    </script>
 
+        // --- MODAL (MESSAGE BOX) LOGIC ---
+        const modal = document.getElementById('message-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalBody = document.getElementById('modal-body');
+        const modalCloseBtn = document.getElementById('modal-close-btn');
+
+        function showModal(title, message) {
+            modalTitle.textContent = title;
+            modalBody.textContent = message;
+            modal.classList.remove('hidden');
+
+            // Apply transition for smooth appearance
+            setTimeout(() => {
+                const content = modal.querySelector('.modal-content');
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function hideModal() {
+            const content = modal.querySelector('.modal-content');
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+
+            // Hide after transition
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        modalCloseBtn.addEventListener('click', hideModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                hideModal();
+            }
+        });
+
+        // --- RANKING LOGIC ---
+
+        function renderRanking() {
+            const rankingList = document.getElementById('ranking-list');
+            
+            // 1. Calculate total score and sort the data
+            const rankedData = initialRankingData
+                .map(user => ({
+                    ...user,
+                    combinedScore: user.songScore + user.totalScore
+                }))
+                .sort((a, b) => b.combinedScore - a.combinedScore); // Descending order
+
+            rankingList.innerHTML = ''; // Clear previous entries
+
+            rankedData.forEach((user, index) => {
+                const rank = index + 1;
+                const isTop3 = rank <= 3;
+                const isFirst = rank === 1;
+
+                // Determine base styling (approx. 20% height area on small screens, adjusts with content)
+                let cardClasses = 'flex items-center p-3 rounded-xl transition duration-300 transform hover:scale-[1.01] shadow-md border-2 border-slate-700 h-[20vh] sm:h-auto';
+
+                if (isFirst) {
+                    cardClasses += ' rank-1 bg-gradient-to-r from-yellow-900/50 to-slate-800/80';
+                } else if (isTop3) {
+                    cardClasses += ' rank-top-3 bg-slate-800/80';
+                } else {
+                    cardClasses += ' bg-slate-800';
+                }
+
+                // --- GIFT BOX SVG ---
+                const giftBoxSvg = `
+                    <div onclick="claimReward('${user.username}')" class="gift-box ml-2 p-1 rounded-full bg-violet-500 hover:bg-violet-600 text-white flex-shrink-0" title="Claim Prize!">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M5.404 14.596A6.5 6.5 0 0110 8V2a.5.5 0 011 0v6a6.5 6.5 0 014.596 6.596A.5.5 0 0115 15.5H5a.5.5 0 01-.596-.404zM16 17H4a1 1 0 010-2h12a1 1 0 010 2z" clip-rule="evenodd"></path>
+                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
+                        </svg>
+                    </div>
+                `;
+
+                // --- RANKING ENTRY HTML ---
+                const entryHTML = `
+                    <div class="${cardClasses}">
+                        <!-- Rank & Profile (w-1/12 on mobile, adjusts) -->
+                        <div class="w-1/12 text-center flex flex-col items-center justify-center space-y-1 sm:space-y-0 flex-shrink-0">
+                            <span class="text-xl sm:text-2xl font-black ${isFirst ? 'text-yellow-400' : isTop3 ? 'text-violet-400' : 'text-gray-300'}">${rank}</span>
+                            ${isFirst ? giftBoxSvg : ''}
+                        </div>
+
+                        <!-- User Info (Hidden on small screen to prioritize song title) -->
+                        <div class="w-3/12 hidden sm:flex items-center space-x-3 flex-shrink-0">
+                            <img src="${user.profilePic}" alt="${user.username} Profile" class="w-10 h-10 rounded-full object-cover border border-slate-600">
+                            <span class="text-base font-medium text-white truncate">${user.username}</span>
+                        </div>
+
+                        <!-- Song Title (w-4/12 mobile, w-3/12 tablet/desktop) -->
+                        <div class="w-6/12 sm:w-4/12 px-2 flex flex-col justify-center">
+                            <p class="text-sm sm:text-lg font-semibold text-white truncate">${user.coverSong}</p>
+                            <p class="text-xs text-gray-400 sm:hidden truncate">@${user.username}</p>
+                            <div class="flex space-x-2 text-xs mt-1 text-gray-400">
+                                <span>Song: ${user.songScore}</span>
+                                <span>|</span>
+                                <span>Total score: ${user.totalScore}</span>
+                            </div>
+                        </div>
+
+                        <!-- Link Icon (Hidden on small screen to prioritize score) -->
+                        <div class="w-2/12 hidden sm:flex justify-center items-center flex-shrink-0">
+                            <a href="${user.songLink}" target="_blank" title="Play Song: ${user.coverSong}" class="play-icon text-violet-400 hover:text-blue-400">
+                                <!-- Play Button SVG Icon -->
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
+                            </a>
+                        </div>
+
+                        <!-- Total Score (w-3/12 mobile, w-2/12 tablet/desktop) -->
+                        <div class="w-3/12 sm:w-2/12 text-center flex flex-col items-center justify-center flex-shrink-0">
+                            <span class="text-xl font-extrabold ${isFirst ? 'text-yellow-300' : 'text-green-400'}">${user.combinedScore}</span>
+                            <span class="text-xs text-gray-400 hidden sm:block">Pts</span>
+                        </div>
+
+                        <!-- Mobile Play Button -->
+                        <div class="w-2/12 flex sm:hidden justify-center items-center flex-shrink-0">
+                             <a href="${user.songLink}" target="_blank" title="Play Song: ${user.coverSong}" class="play-icon text-violet-400 hover:text-blue-400">
+                                <!-- Play Button SVG Icon -->
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
+                            </a>
+                        </div>
+                    </div>
+                `;
+                rankingList.innerHTML += entryHTML;
+            });
+        }
+
+        // 1st Place Gift Box Handler
+        function claimReward(username) {
+            showModal('Reward: !', `${username} will get the 1st place prize: ${REWARD_AMOUNT} gold coins in starmaker!`);
+        }
+
+        // Run the ranking rendering when the DOM is ready
+        document.addEventListener('DOMContentLoaded', renderRanking);
+    </script>
 </body>
 </html>
+
