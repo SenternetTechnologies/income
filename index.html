@@ -3,73 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔥𓆩🅲🆂𓆪🔥 | Cansing Cover Event 2025 - October Month (Bright Mode)</title>
+    <title>🔥𓆩🅲🆂𓆪🔥 | Cansing Cover Event 2025 - October Month (Enhanced Bright Mode)</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <style>
-        /* Custom styles for animations and aesthetics */
+        /* --- CUSTOM STYLES & ANIMATIONS --- */
         :root {
             --primary-color: #7c3aed; /* Violet 600 */
             --secondary-color: #a78bfa; /* Violet 400 */
             --gold-color: #ffd700;
-            --light-bg: #ffffff; /* White/Light background */
-            --dark-text: #1e293b; /* Slate 800 for text */
+            --light-bg: #ffffff;
+            --dark-text: #1e293b;
+            --subtle-gray: #f1f5f9;
         }
 
-        /* --- BRIGHT MODE BASE STYLES --- */
+        /* --- BRIGHT MODE BASE & TEXTURE --- */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f1f5f9; /* Slate 100 - Very light gray background */
-            color: var(--dark-text); /* Slate 800 for main text */
-        }
-
-        /* Adjusting header for bright mode */
-        header {
-            background-color: var(--light-bg); /* White header background */
+            background-color: var(--subtle-gray);
             color: var(--dark-text);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+            /* Subtle diagonal pattern for texture */
+            background-image: linear-gradient(45deg, var(--subtle-gray) 25%, #e2e8f0 25%, #e2e8f0 50%, var(--subtle-gray) 50%, var(--subtle-gray) 75%, #e2e8f0 75%, #e2e8f0 100%);
+            background-size: 56.57px 56.57px;
         }
 
-        /* Countdown background adjustment */
+        /* Animated Header */
+        @keyframes slideDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        header {
+            background-color: var(--light-bg);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+            animation: slideDown 0.5s ease-out;
+        }
+
+        /* Animated Button Glow */
+        @keyframes glowing {
+            0% { box-shadow: 0 0 5px rgba(124, 58, 237, 0.5); }
+            50% { box-shadow: 0 0 15px rgba(124, 58, 237, 0.8), 0 0 20px rgba(124, 58, 237, 0.4); }
+            100% { box-shadow: 0 0 5px rgba(124, 58, 237, 0.5); }
+        }
+        .cta-button {
+            animation: glowing 3s infinite alternate;
+        }
+
+        /* Countdown Style */
         #countdown-timer-wrapper {
-            background-color: #f8fafc; /* Slate 50 */
-            border-color: #d1d5db; /* Gray 300 */
+            background: linear-gradient(135deg, #f8fafc, #ffffff);
+            border-color: #e2e8f0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        #countdown-timer span {
+            transition: transform 0.1s ease-out;
         }
 
         /* Sticky header background */
         .sticky-header {
-            background-color: #f1f5f9; /* Match body background */
-        }
-
-        /* Content sections background */
-        section, .host-card, .official-family-card {
-            background-color: var(--light-bg);
+            background-color: var(--subtle-gray); /* Match body background */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
         
-        /* Modal Content for contrast */
-        .modal-content {
-            background-color: var(--light-bg); 
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+        /* General Card Hover Effect */
+        section, .host-card, .official-family-card {
+            transition: all 0.3s ease-in-out;
+            border-left: 5px solid transparent;
         }
-        .modal-title, .modal-body {
-            color: var(--dark-text);
+        section:hover, .host-card:hover, .official-family-card:hover {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border-left-color: var(--primary-color);
+            transform: translateY(-2px);
         }
 
-        /* --- RANKING ANIMATIONS & COLORS (ADJUSTED FOR BRIGHT MODE) --- */
+        /* --- RANKING ANIMATIONS & COLORS --- */
         @keyframes pulse-rank {
-            0%, 100% {
-                box-shadow: 0 0 8px rgba(124, 58, 237, 0.2), 0 0 16px rgba(124, 58, 237, 0.1);
-                transform: scale(1.0);
-            }
-            50% {
-                box-shadow: 0 0 16px rgba(124, 58, 237, 0.4), 0 0 24px rgba(124, 58, 237, 0.2);
-                transform: scale(1.02);
-            }
+            0%, 100% { box-shadow: 0 0 8px rgba(124, 58, 237, 0.2); transform: scale(1.0); }
+            50% { box-shadow: 0 0 16px rgba(124, 58, 237, 0.4); transform: scale(1.02); }
         }
 
         .rank-top-3 {
             animation: pulse-rank 2s infinite ease-in-out;
             border: 2px solid var(--primary-color);
-            background: linear-gradient(90deg, #f8fafc, #e2e8f0); /* Light gradient */
+            background: linear-gradient(90deg, #f8fafc, #eef2ff); /* Light gradient */
         }
 
         .rank-1 {
@@ -78,31 +93,36 @@
             background: linear-gradient(90deg, #fffbeb, #fef3c7) !important; /* Extra light gold background */
         }
         
-        /* Rank list header for contrast */
         .ranking-header {
             background-color: #e2e8f0; /* Slate 200 */
             color: var(--dark-text);
         }
         
         .play-icon {
-            color: var(--primary-color);
+            transition: transform 0.2s;
         }
         .play-icon:hover {
-            color: #3b82f6; /* Blue 500 */
+            color: #3b82f6;
+            transform: scale(1.1);
         }
-
+        .gift-box {
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .gift-box:hover {
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+        }
     </style>
 </head>
 <body class="min-h-screen">
-<script src='https://cdn.jotfor.ms/agent/embedjs/01999ecfdc7c7a45aa545d39af73fcb1627d/embed.js'>
-</script>
+<script src='https://cdn.jotfor.ms/agent/embedjs/01999ecfdc7c7a45aa545d39af73fcb1627d/embed.js'></script>
 
-
-    <div id="message-modal" class="modal fixed inset-0 z-50 flex items-center justify-center hidden">
+    <div id="message-modal" class="modal fixed inset-0 z-50 flex items-center justify-center hidden bg-gray-900 bg-opacity-50">
         <div class="modal-content p-6 rounded-xl w-11/12 max-w-sm border-t-4 border-violet-500 transform transition-all duration-300 scale-95 opacity-0">
             <h3 id="modal-title" class="text-xl font-bold mb-3 modal-title">Reward!</h3>
             <p id="modal-body" class="mb-4 text-gray-700 modal-body">Starmaker 42 gold coins!</p>
-            <button id="modal-close-btn" class="w-full bg-violet-600 hover:bg-violet-700 text-white font-semibold py-2 rounded-lg transition duration-150">Got It</button>
+            <button id="modal-close-btn" class="w-full bg-violet-600 hover:bg-violet-700 text-white font-semibold py-2 rounded-lg transition duration-150 transform hover:scale-[1.01]">Got It</button>
         </div>
     </div>
 
@@ -110,12 +130,12 @@
     <div class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
         <header class="text-center py-6 mb-8 bg-white rounded-xl shadow-lg">
             <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-800 tracking-tight">Cansing Cover Event October 2025</h1>
-            <p class="text-xl sm:text-2xl text-violet-600 mt-1">#singwithcs</p>
-            <p class="text-xl sm:text-2xl text-violet-600 mt-1"> Record song  -  Select hastag  -  Post song</p>
+            <p class="text-xl sm:text-2xl text-violet-600 mt-1 font-mono">#singwithcs</p>
+            <p class="text-md sm:text-lg text-gray-600 mt-1 animate-pulse">Record song - Select hastag - Post song</p>
 
             <div id="countdown-timer-wrapper" class="mt-4 p-3 bg-slate-50 rounded-lg inline-block mx-auto border border-gray-300">
                 <p class="text-xs uppercase font-semibold text-gray-500 mb-1">Event Ends In</p>
-                <div id="countdown-timer" class="flex justify-center space-x-2 sm:space-x-4 text-slate-800 font-mono text-lg sm:text-2xl">
+                <div id="countdown-timer" class="flex justify-center space-x-2 sm:space-x-4 text-slate-800 font-mono text-lg sm:text-3xl font-extrabold">
                     <span id="days">00D</span>
                     <span class="text-violet-500">:</span>
                     <span id="hours">00H</span>
@@ -126,172 +146,175 @@
                 </div>
             </div>
 
-
-
-
-
-  <h2 class="text-2xl font-bold text-violet-600 mb-3">Total users Joined: 44 | Total Singers posted songs: 10 </h2>
+            <h2 class="text-2xl font-bold text-violet-600 mt-6 mb-3">Total users Joined: 44 | Total Singers posted songs: 10 </h2>
         </header>
         
-
-
-
-
-
-
-        <div class="flex border-b border-gray-300 mb-6 sticky top-0 bg-f1f5f9 z-10 rounded-t-xl sticky-header">
-            <button id="tab-home" class="flex-1 py-3 text-center text-lg font-semibold transition-colors duration-200 border-b-2 border-transparent text-slate-800 hover:bg-gray-100 rounded-tl-lg" onclick="showTab('home')">
-                Home
+        <div class="flex border-b-4 border-gray-200 mb-6 sticky top-0 z-10 sticky-header pt-2 rounded-t-xl shadow-lg">
+            <button id="tab-home" class="flex-1 py-3 text-center text-lg font-extrabold transition-colors duration-200 border-b-4 border-transparent text-slate-800 hover:bg-violet-50/50 rounded-tl-xl" onclick="showTab('home')">
+                🏠 Home
             </button>
-            <button id="tab-ranking" class="flex-1 py-3 text-center text-lg font-semibold transition-colors duration-200 border-b-2 border-transparent text-violet-600 hover:bg-gray-100 rounded-tr-lg" onclick="showTab('ranking')">
-                Event Ranking
+            <button id="tab-ranking" class="flex-1 py-3 text-center text-lg font-extrabold transition-colors duration-200 border-b-4 border-transparent text-violet-600 hover:bg-violet-50/50 rounded-tr-xl" onclick="showTab('ranking')">
+                🏆 Event Ranking
             </button>
         </div>
 
         <div id="content-home" class="tab-content space-y-8">
-            <section class="p-6 bg-white rounded-xl shadow-lg">
+            <section class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-violet-600">
                 <h2 class="text-2xl font-bold text-violet-600 mb-3">Welcome to 🔥𓆩🅲🆂𓆪🔥 | CanSing தமிழ் Family</h2>
-                <p class="text-gray-700">welcome to Cansing family, In starmaker cansing family created on 2019, we have 4 region teams, Mainly located  <b> Malaysia</b>. in our family conducts and promote some cover events under starmaker app. Users just post songs on those account, our API were redirect the hastag and add make connection with starmaker host for manage covers, so users can participate our events. <br> here we didnot use or against our starmaker team policy. Privacy starts with understanding.</p>
+                <p class="text-gray-700">Welcome to the Cansing family! Created on Starmaker in 2019, our family operates with 4 regional teams, mainly located in **Malaysia**. We actively conduct and promote cover events within the Starmaker app. By posting songs with our official hashtag, users' entries are managed by our API and Starmaker hosts, ensuring a seamless event experience. Our activities strictly adhere to Starmaker team policy. Privacy starts with understanding.</p>
             </section>
 
             <div class="grid md:grid-cols-2 gap-6">
-                <section class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-violet-500">
-                    <h3 class="text-xl font-semibold text-violet-600 mb-3">Event Details</h3>
-                    <p class="text-sm text-gray-600">This event runs throughout the month, culminating in the final ranking announcement on **October 14th**. Entries are judged on vocal performance, musical arrangement, and overall production quality. Good luck!
-<br>
-<b>How to ranking were generates</b><br>
-<li>Total likes + total comments + shares + score of song</li></p>
-                </section>
-                <section class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-violet-500">
-                    <h3 class="text-xl font-semibold text-violet-600 mb-3">Rewards Structure</h3>
-                    <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
-                        <li>🥇 **1st Place:** Special prize (42 Gold Coins) + Featured Post</li>
-                        <li>🥈 **2nd Place:** Featured post</li>
-                        <li>🥉 **3rd Place:** Featured post</li>
-                        <li>**All Participants:** Digital certificate</li>
+                <section class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-yellow-500">
+                    <h3 class="text-xl font-semibold text-violet-600 mb-3 flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        Event Details
+                    </h3>
+                    <p class="text-sm text-gray-600">This month-long event culminates in the final ranking announcement on **October 14th**. Entries are judged on vocal performance, musical arrangement, and overall production quality. Good luck!</p>
+                    <br>
+                    <p class="text-sm font-bold text-slate-800">How Rankings are Generated:</p>
+                    <ul class="list-disc list-inside text-sm text-gray-700 ml-4 mt-1">
+                        <li>Total Likes + Total Comments + Shares + Score of Song</li>
                     </ul>
+                </section>
+                <section class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-green-500">
+                    <h3 class="text-xl font-semibold text-violet-600 mb-3 flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8v6"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4a2 2 0 002 2h4.5a2.5 2.5 0 010 5H7a2 2 0 00-2 2v4"></path></svg>
+                        Rewards Structure
+                    </h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2 text-base">
+                        <li class="font-bold text-yellow-600">🥇 **1st Place:** Special prize (42 Gold Coins) + Featured Post</li>
+                        <li class="text-gray-700">🥈 **2nd Place:** Featured Post</li>
+                        <li class="text-gray-700">🥉 **3rd Place:** Featured Post</li>
+                        <li class="text-gray-500">**All Participants:** Digital Certificate</li>
+                    </ul>
+                    <button onclick="showModal('Claim Reward Info', 'The 1st place winner receives 42 Starmaker Gold Coins! Click the gift box in the ranking to see the winning animation!')" class="mt-4 bg-violet-600 cta-button hover:bg-violet-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-150 transform hover:scale-[1.05]">
+                        View Prize Info
+                    </button>
                 </section>
             </div>
 
-            <section class="p-6 bg-white rounded-xl shadow-lg">
-                <h3 class="text-2xl font-bold text-violet-600 mb-4">How to Participate</h3>
-                <ol class="space-y-3 text-gray-700 text-base">
-                    <li>1. **Record:** Produce a high-quality cover song video or audio. Duets or Old posts cant Eligible.</li>
-                    <li>2. **Upload:** Share your post with <b>#singwithcs</b> hastag. non-hastag posts can enter event</li>
-                    <li>3. **Check event:** This events link were shared after your song post.</li>
-                    <li>4. **Wait:** Dear users, this is full and full starmaker & cansing API hosts event, so every actions can take upto 3-5 hours, every steps you receuve System message.</li>
+            <section class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-blue-500">
+                <h3 class="text-2xl font-bold text-violet-600 mb-4 flex items-center">
+                    <svg class="w-6 h-6 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                    How to Participate
+                </h3>
+                <ol class="space-y-3 text-gray-700 text-base list-decimal list-inside ml-4">
+                    <li>**Record:** Produce a high-quality cover song video or audio. <span class="text-red-500 font-semibold">Duets or Old posts are NOT eligible.</span></li>
+                    <li>**Upload:** Share your post on Starmaker with the official hashtag **#singwithcs**. Posts without the hashtag cannot enter the event.</li>
+                    <li>**Check Event:** This event link will be shared after your song post.</li>
+                    <li>**Wait:** Dear users, this is a fully automated Starmaker & Cansing API host event. All steps and updates can take up to 3-5 hours. You will receive a System Message for every action.</li>
                 </ol>
             </section>
 
-            <h2 class="text-2xl font-bold text-slate-800 mt-8 mb-4">Event Hosts & Team</h2>
+            <h2 class="text-2xl font-bold text-slate-800 mt-8 mb-4">🎤 Event Hosts & Team</h2>
             <div class="grid md:grid-cols-2 gap-6">
-                <div class="p-4 bg-white rounded-xl shadow-xl flex flex-col items-center text-center host-card">
-                    <img src="https://improxy.starmakerstudios.com/tools/im/200/production/users/844424932338727/profile.jpg?ts=1759301580" class="w-24 h-24 rounded-full object-cover mb-3 border-4 border-violet-500">
-                    <h4 class="text-xl font-semibold text-slate-800">🔥𓆩🅲🆂𓆪🔥🖤🄴ує༗🄺أℓℓєr𓅋𝆺𝅥𒁍</h4>
+                <div class="p-4 bg-white rounded-xl shadow-xl flex flex-col items-center text-center host-card border-t-4 border-red-500">
+                    <img src="https://improxy.starmakerstudios.com/tools/im/200/production/users/844424932338727/profile.jpg?ts=1759301580" class="w-24 h-24 rounded-full object-cover mb-3 border-4 border-violet-500 transform transition duration-300 hover:scale-110">
+                    <h4 class="text-xl font-semibold text-slate-800">🔥𓆩🅲🆂𓆪🔥🖤🄴ує༗🄺أℓℓєr𓅋𝆺𝅥𒁍</h4>
                     <p class="text-sm text-violet-600 mb-3">Cansing Family & Events Head</p>
-                    <a href="https://starmaker.onelink.me/v4ei/swmpxii4" class="bg-violet-600 hover:bg-violet-700 text-white text-sm font-medium py-2 px-4 rounded-lg transition duration-150">View Profile</a>
-             
-                    </div>
+                    <a href="https://starmaker.onelink.me/v4ei/swmpxii4" target="_blank" class="bg-violet-600 hover:bg-violet-700 text-white text-sm font-medium py-2 px-4 rounded-lg transition duration-150 transform hover:shadow-lg">View Profile</a>
                 </div>
-
-                <div class="p-4 bg-white rounded-xl shadow-xl flex flex-col items-center text-center host-card">
-                    <img src="https://improxy.starmakerstudios.com/tools/im/200/production/users/4222124653674120/profile.jpg?ts=1757686010" alt="Admin B Profile" class="w-24 h-24 rounded-full object-cover mb-3 border-4 border-violet-500">
+                <div class="p-4 bg-white rounded-xl shadow-xl flex flex-col items-center text-center host-card border-t-4 border-red-500">
+                    <img src="https://improxy.starmakerstudios.com/tools/im/200/production/users/4222124653674120/profile.jpg?ts=1757686010" alt="Admin B Profile" class="w-24 h-24 rounded-full object-cover mb-3 border-4 border-violet-500 transform transition duration-300 hover:scale-110">
                     <h4 class="text-xl font-semibold text-slate-800">"*🇪🇸*𝒦𝙢𝕒𐍃𐍃₀₀➐*🇪🇸*</h4>
                     <p class="text-sm text-violet-600 mb-3">Event Coordinator & Cansing Host</p>
-                    <a href="https://starmaker.onelink.me/v4ei/jns9d13k" class="bg-violet-600 hover:bg-violet-700 text-white text-sm font-medium py-2 px-4 rounded-lg transition duration-150">View Profile</a>
-                 
+                    <a href="https://starmaker.onelink.me/v4ei/jns9d13k" target="_blank" class="bg-violet-600 hover:bg-violet-700 text-white text-sm font-medium py-2 px-4 rounded-lg transition duration-150 transform hover:shadow-lg">View Profile</a>
                 </div>
             </div>
 
             <h3 class="text-xl font-bold text-slate-800 mt-8 mb-4">Official Event Family</h3>
-            <div class="p-6 bg-white rounded-xl shadow-xl flex flex-col sm:flex-row items-center sm:space-x-4 official-family-card">
+            <div class="p-6 bg-white rounded-xl shadow-xl flex flex-col sm:flex-row items-center sm:space-x-4 official-family-card border-t-4 border-orange-500">
                 <img src="https://improxy.smpopular.com/tools/im/0/files/844424932338727/ceb1202a985148b22a7511b7373909f2.jpg" alt="Host Family" class="w-24 h-24 rounded-full object-cover mb-4 sm:mb-0 border-4 border-violet-500">
                 <div class="text-center sm:text-left">
-                    <p class="text-2xl font-bold text-slate-800">🔥𓆩🅲🆂𓆪🔥🖤🄴ує༗🄺أℓℓєr𓅋𝆺𝅥𒁍 |  CαηSιηg Family🇲🇾</p>
-                    <p class="text-md text-violet-600">Official Family ID: <span class="font-mono text-slate-800">668332</span></p>
+                    <p class="text-2xl font-bold text-slate-800">🔥𓆩🅲🆂𓆪🔥🖤🄴ує༗🄺أℓℓєr𓅋𝆺𝅥𒁍 | CαηSιηg Family🇲🇾</p>
+                    <p class="text-md text-violet-600">Official Family ID: <span class="font-mono text-slate-800 font-bold">668332</span></p>
                     <p class="text-sm text-gray-600 mt-1">Dedicated to promoting emerging cover song talent globally.</p>
                 </div>
             </div>
         </div>
 
         <div id="content-ranking" class="tab-content hidden space-y-4">
-            <h2 class="text-3xl font-bold text-violet-600 mb-6 text-center">Cover Event Rankings</h2>
+            <h2 class="text-3xl font-bold text-violet-600 mb-6 text-center animate-bounce">🏆 Top Singers 🏆</h2>
 
-            <div class="ranking-header p-3 rounded-lg flex text-xs sm:text-sm font-semibold uppercase sticky top-[5.25rem] z-5" style="top: calc(3rem + 1px);">
+            <div class="ranking-header p-3 rounded-lg flex text-xs sm:text-sm font-semibold uppercase sticky z-5 shadow-lg" style="top: 7rem;">
                 <span class="w-1/12 text-center">#</span>
-                <span class="w-8/12 block pl-2">Participant & Song</span> 
+                <span class="w-6/12 block pl-2">Participant & Song</span>
+                <span class="w-2/12 text-center hidden sm:block">User SID</span>
                 <span class="w-3/12 text-center">Score</span>
             </div>
 
             <div id="ranking-list" class="space-y-3">
-                </div>
+            </div>
         </div>
 
     </div>
 
     <script>
         // --- DATA SECTION ---
-        // Added some mock data for better visualization in the bright mode.
+        // Added some mock data and a new 'sid' field as requested.
         const initialRankingData = [
             // Unordered data, will be sorted by combined score
-            { profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/10977524093936635/profile.jpg?ts=1635988001', username: '🔥🅰️иto🅰️иςi◄ꪜ🔥ᘔᴛⱤᗩ', coverSong: 'Thoothuvala ilai araichu short cover', songLink: 'https://starmaker.onelink.me/v4ei/um9qzwnc', songScore: 87.91, totalScore: 0, id: 1 },
+            { profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/10977524093936635/profile.jpg?ts=1635988001', username: '🔥🅰️иto🅰️иςi◄ꪜ🔥ᘔᴛⱤᗩ', coverSong: 'Thoothuvala ilai araichu short cover', songLink: 'https://starmaker.onelink.me/v4ei/um9qzwnc', songScore: 87.91, totalScore: 0, sid: '62005793352', id: 1},
 
-            { profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/3377699730742364/profile.jpg?ts=1756748096', username: '💛ѕяι💛', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0, id: 2 },
+            { profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/3377699730742364/profile.jpg?ts=1756748096', username: '💛ѕяι💛', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0,sid:'100107412063', id: 2 },
 
-{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/4222124653674120/profile.jpg?ts=1757686010', username: '*🇪🇸*𝒦𝙢𝕒𐍃𐍃₀₀➐*🇪🇸*', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0, id: 2 },
+{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/4222124653674120/profile.jpg?ts=1757686010', username: '*🇪🇸*𝒦𝙢𝕒𐍃𐍃₀₀➐*🇪🇸*', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0,sid:'13369245398', id: 2 },
 
-{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/3940649683783177/profile.jpg?ts=1759305819', username: '👑༎͢🖤🅓ꝛαɢσи༗⁩⁩🔥༎🖤', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0, id: 2 },
+{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/3940649683783177/profile.jpg?ts=1759305819', username: '👑༎͢🖤🅓ꝛαɢσи༗⁩⁩🔥༎🖤', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0,sid:'100092166632', id: 2 },
 
 { profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/2533274800075013/profile.jpg?ts=1758798364', username: '🎶D🦜P🐁💜', coverSong: 'Enadhuyire (Short Ver)',
- songLink: 'https://m.starmakerstudios.com/a-vue3/playrecording?app=tvp&guide_type=2&pg_rf_ca_vn=20&pid=recordingsharing&recordingId=2533274873138674&share_type=copyLink', songScore: 88.54, totalScore: 0, id: 2 },
+ songLink: 'https://m.starmakerstudios.com/a-vue3/playrecording?app=tvp&guide_type=2&pg_rf_ca_vn=20&pid=recordingsharing&recordingId=2533274873138674&share_type=copyLink', songScore: 88.54, totalScore: 0, sid:'100085950835',id: 2 },
 
 
-{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/8162774328793996/profile.jpg?ts=1759250647', username: '❤️🎭✰࿐⧼ʀᴏᴊᴀ⧽✰࿐🎭❤️', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0, id: 2 },
+{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/8162774328793996/profile.jpg?ts=1759250647', username: '❤️🎭✰࿐⧼ʀᴏᴊᴀ⧽✰࿐🎭❤️', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0,sid:'62013069225', id: 2 },
 
 
-{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/10133099176541021/profile.jpg?ts=1758012823', username: '🦋✨𝒴𝒶𝓈𝓂𝑒𝑒𝓃✨🦋', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0, id: 2 },
+{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/10133099176541021/profile.jpg?ts=1758012823', username: '🦋✨𝒴𝒶𝓈𝓂𝑒𝑒𝓃✨🦋', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0,sid:'100111004986', id: 2 },
 
 
-{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/3659174704763812/profile.jpg?ts=1759285228', username: '🦋⃟🐣𝙹𝚎𝚜𝚜𝚕𝚢࿐', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0, id: 2 },
+{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/3659174704763812/profile.jpg?ts=1759285228', username: '🦋⃟🐣𝙹𝚎𝚜𝚜𝚕𝚢࿐', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0,sid:'62183855493', id: 2 },
 
 
-{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/10977524103343237/profile.jpg?ts=1758729752', username: '⟵꯭᪵〬🤍꧊፝֟‹itkat💙Appu', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0, id: 2 },
+{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/10977524103343237/profile.jpg?ts=1758729752', username: '⟵꯭᪵〬🤍꧊፝֟‹itkat💙Appu', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0,sid:'100034978351', id: 2 },
 
 
-{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/4222124660461491/profile.jpg?ts=1749725025', username: 'vibe🔥', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0, id: 2 },
+{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/4222124660461491/profile.jpg?ts=1749725025', username: 'vibe🔥', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0,sid:'100090958618', id: 2 },
 
-    { profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/11821949031594500/profile.jpg?ts=1759316098', username: '💙ﮩﮩـ٨ﮩﮩHasini✨', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0, id: 2 },
+    { profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/11821949031594500/profile.jpg?ts=1759316098', username: '💙ﮩﮩـ٨ﮩﮩHasini✨', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0,sid:'88891107711', id: 2 },
 
 
-    { profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/1125899918555727/profile.jpg?ts=1759110253', username: '—͟͞͞★ꌗ𝑖ƭᵃ—͟͞͞★', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0, id: 2 },
+    { profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/1125899918555727/profile.jpg?ts=1759110253', username: '—͟͞͞★ꌗ𝑖ƭᵃ—͟͞͞★', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0,sid:'100107811403', id: 2 },
 
 
- { profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/10414574150479811/profile.jpg?ts=1756293727', username: '꧁☆☬🔥RAKHI🔥☬☆🔥007꧂', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0, id: 2 },
+ { profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/10414574150479811/profile.jpg?ts=1756293727', username: '꧁☆☬🔥RAKHI🔥☬☆🔥007꧂', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0,sid:'100049514901', id: 2 },
 
 
 
-{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/10133099173929797/profile.jpg?ts=1759327772', username: '𝄟≛⃝𝄟𝘾𝙪𝙩𝙚👑𝙆𝙖𝙣𝙢𝙖𝙣𝙞≛⃝😍', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0, id: 2 },
+{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/10133099173929797/profile.jpg?ts=1759327772', username: '𝄟≛⃝𝄟𝘾𝙪𝙩𝙚👑𝙆𝙖𝙣𝙢𝙖𝙣𝙞≛⃝😍', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0,sid:'100053806175', id: 2 },
 
 
-{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/12947848938526000/profile.jpg?ts=1759082138', username: '𓆰፝֟͜͡🇰ᴀᴠʏᴀ_🇻ɪᴊᴀʏ🧡࿐', coverSong: 'Sakkarai Nilave (Short Ver)', songLink: 'https://m.starmakerstudios.com/a-vue3/playrecording?app=sm&from_sid=13358325610&guide_type=2&pg_rf_ca_vn=20&pid=recordingsharing&recordingId=12947849018679932&share_type=copyLink', songScore: 86.12, totalScore: 0, id: 2 },
+{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/12947848938526000/profile.jpg?ts=1759082138', username: '𓆰፝֟͜͡🇰ᴀᴠʏᴀ_🇻ɪᴊᴀʏ🧡࿐', coverSong: 'Sakkarai Nilave (Short Ver)', songLink: 'https://m.starmakerstudios.com/a-vue3/playrecording?app=sm&from_sid=13358325610&guide_type=2&pg_rf_ca_vn=20&pid=recordingsharing&recordingId=12947849018679932&share_type=copyLink', songScore: 86.12, totalScore: 0,sid:'100000955676', id: 2 },
 
 
 
-{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/6755399446699062/profile.jpg?ts=1759200272', username: '➢≛⃝🇲♛✨🅿ą۷ıɬɧཞą✨≛⃝💙➛࿐', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0, id: 2 },
+{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/6755399446699062/profile.jpg?ts=1759200272', username: '➢≛⃝🇲♛✨🅿ą۷ıɬɧཞą✨≛⃝💙➛࿐', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0,sid:'13328698733', id: 2 },
 
 
-{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/8162774334807425/profile.jpg?ts=1759074348', username: '⏤͟͟͞❥͜͡𝄟♥⃝🇲i͡𝖓i💕❥͜͡★', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0, id: 2 },
+{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/8162774334807425/profile.jpg?ts=1759074348', username: '⏤͟͟͞❥͜͡𝄟♥⃝🇲i͡𝖓i💕❥͜͡★', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0, sid:'100106698613',id: 2 },
 
 
-{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/2533274792559099/profile.jpg?ts=1755003536', username: '🩵😉➻❥🅲🅤🅣︎🅴👸🏻🅷🅐🅡🅸🆃🅷🅐❥🩵', coverSong: 'Poongatrile Un Swasathai Uyire', songLink: 'https://m.starmakerstudios.com/a-vue3/playrecording?app=sm&from_sid=13358325610&guide_type=2&pg_rf_ca_vn=20&pid=recordingsharing&recordingId=2533274873141144&share_type=copyLink', songScore: 81.60, totalScore: 0, id: 2 },
+{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/2533274792559099/profile.jpg?ts=1755003536', username: '🩵😉➻❥🅲🅤🅣︎🅴👸🏻🅷🅐🅡🅸🆃🅷🅐❥🩵', coverSong: 'Poongatrile Un Swasathai Uyire', songLink: 'https://m.starmakerstudios.com/a-vue3/playrecording?app=sm&from_sid=13358325610&guide_type=2&pg_rf_ca_vn=20&pid=recordingsharing&recordingId=2533274873141144&share_type=copyLink', songScore: 81.60, totalScore: 0, sid:'13357975976',id: 2 },
 
 
-{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/4222124656388491/profile.jpg?ts=1759331817', username: '✮⃝🌜ᥴꫝꪖꪀ𝄞', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0, id: 2 },
+{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/4222124656388491/profile.jpg?ts=1759331817', username: '✮⃝🌜ᥴꫝꪖꪀ𝄞', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0,sid:'62084645372', id: 2 },
 
 
-{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/12384898983102385/profile.jpg?ts=1759393683', username: '🦋⚝ViJi⚝💜', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0, id: 2 },
+{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/12384898983102385/profile.jpg?ts=1759393683', username: '🦋⚝ViJi⚝💜', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0, sid:'62181050934',id: 2 },
 
+{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/13229323908394234/profile.jpg?ts=1759424050', username: '𓄂⍣⃟🌟Nithya✨𒁍', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0, sid:'100021810095',id: 2 },
 
+{ profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/13510798885031860/profile.jpg?ts=1752615725', username: '✮⃝💚SYEDALI✮⃝💚', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0, sid:'100021082445',id: 2 },
 
 
 
@@ -314,225 +337,11 @@
 
 
 
-
-
-
-
-
-
-            
-//bot users-❤️❤️
-        { profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/2511274792555096/profile.jpg?ts=1750000000', username: 'SingingStar_Raja', coverSong: 'aathadi -Anegan', songLink: 'https://m.starmakerstudios.com/a-vue3/playrecording?app=sm&from_sid=13358325610&guide_type=2&pg_rf_ca_vn=20&pid=recordingsharing&recordingId=844425005226760&share_type=copyLink', songScore: 40.2, totalScore: 0, id: 3 },
-            { profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/2533274792845097/profile.jpg?ts=1750000001', username: 'The_Voice_Of_Karthik', coverSong: 'Rowdy Baby', songLink: 'https://m.starmakerstudios.com/a-vue3/playrecording?app=sm&from_sid=13358325610&guide_type=2&pg_rf_ca_vn=20&pid=recordingsharing&recordingId=844425005324765&share_type=copyLink', songScore: 71.09, totalScore: 0, id: 4 },
-            { profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/2533274792559098/profile.jpg?ts=1750000002', username: 'MelodyKing77', coverSong: 'Deewani mastani', songLink: 'https://m.starmakerstudios.com/a-vue3/playrecording?app=sm&from_sid=13358325610&guide_type=2&pg_rf_ca_vn=20&pid=recordingsharing&recordingId=844425005250002&share_type=copyLink', songScore: 77.75, totalScore: 0, id: 5 },
-      
-
-{
-  profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/2533274792659099/profile.jpg?ts=1750000002',
-  username: 'Shining_star1786',
-  coverSong: 'kudagu malai',
-  songLink: 'https://m.starmakerstudios.com/a-vue3/playrecording?app=sm&from_sid=13358325610&guide_type=2&pg_rf_ca_vn=20&pid=recordingsharing&recordingId=10414574258344396&share_type=copyLink',
-  songScore: 76.65,
-  totalScore: 0,
-  id: 2
-},
-
-  {  
-    profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/2533274792559100/profile.jpg?ts=1750000002',  
-    username: '★彡[ShiningSoul]彡★✨',  
-    coverSong: 'thulli elunthathu paatu',  
-    songLink: 'https://m.starmakerstudios.com/a-vue3/playrecording?app=sm&from_sid=13358325610&guide_type=2&pg_rf_ca_vn=20&pid=recordingsharing&recordingId=562950013851654&share_type=copyLink',  
-    songScore: 76.36,  
-    totalScore: 0,  
-    id: 1  
-  },  
-  {  
-    profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/2533274792559101/profile.jpg?ts=1750000002',  
-    username: '✧༺🌙DreamCatcher🌙༻✧',  
-    coverSong: 'User not post any songs',  
-    songLink: '#',  
-    songScore: 0,  
-    totalScore: 0,  
-    id: 2  
-  },  
-  {  
-    profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/2533274792559102/profile.jpg?ts=1750000002',  
-    username: '⚡️Mystic_Flame⚡️',  
-    coverSong: 'User not post any songs',  
-    songLink: '#',  
-    songScore: 0,  
-    totalScore: 0,  
-    id: 3  
-  },  
-  {  
-    profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/2533274792559103/profile.jpg?ts=1750000002',  
-    username: '🌸ᏒᎾᏕᎬ_ᎮᏒᎥᏁᏨᎬ🌸',  
-    coverSong: 'Akkam pakkam',  
-    songLink: 'https://m.starmakerstudios.com/a-vue3/playrecording?app=sm&from_sid=13358325610&guide_type=2&pg_rf_ca_vn=20&pid=recordingsharing&recordingId=3659174773603766&share_type=copyLink',  
-    songScore: 80,  
-    totalScore: 0,  
-    id: 4  
-  },  
-  {  
-    profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/2533274792559104/profile.jpg?ts=1750000002',  
-    username: '✦𝑺𝒊𝒍𝒆𝒏𝒕_𝑺𝒕𝒂𝒓✦',  
-    coverSong: 'User not post any songs',  
-    songLink: '#',  
-    songScore: 0,  
-    totalScore: 0,  
-    id: 5  
-  },  
-  {  
-    profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/2533274792559105/profile.jpg?ts=1750000002',  
-    username: '🖤𝓒𝓻𝓲𝓶𝓼𝓸𝓷_Shadow🖤',  
-    coverSong: 'User not post any songs',  
-    songLink: '#',  
-    songScore: 0,  
-    totalScore: 0,  
-    id: 6  
-  },  
-  {  
-    profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/2533274792559106/profile.jpg?ts=1750000002',  
-    username: '👑༒Royal_Voice༒👑',  
-    coverSong: 'User not post any songs',  
-    songLink: '#',  
-    songScore: 0,  
-    totalScore: 0,  
-    id: 7  
-  },  
-  {  
-    profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/2533274792559107/profile.jpg?ts=1750000002',  
-    username: '🔥Sαvαge_Beαts🔥',  
-    coverSong: 'User not post any songs',  
-    songLink: '#',  
-    songScore: 0,  
-    totalScore: 0,  
-    id: 8  
-  },  
-  {  
-    profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/2533274792559108/profile.jpg?ts=1750000002',  
-    username: '🌟𝒮𝓉𝒶𝓇𝒹𝓊𝓈𝓉_𝒬𝓊𝑒𝑒𝓃🌟',  
-    coverSong: 'User not post any songs',  
-    songLink: '#',  
-    songScore: 0,  
-    totalScore: 0,  
-    id: 9  
-  },  
-  {  
-    profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/2533274792559109/profile.jpg?ts=1750000002',  
-    username: '✪Shadow_𝕂𝕚𝕟𝕘✪',  
-    coverSong: 'User not post any songs',  
-    songLink: '#',  
-    songScore: 0,  
-    totalScore: 0,  
-    id: 10  
-  },  
-  {  
-    profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/2533274792559110/profile.jpg?ts=1750000002',  
-    username: '💫Dreamy_Echo💫',  
-    coverSong: 'User not post any songs',  
-    songLink: '#',  
-    songScore: 0,  
-    totalScore: 0,  
-    id: 11  
-  },  
-  {  
-    profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/2533274792559111/profile.jpg?ts=1750000002',  
-    username: '✿Velvet_𝒱𝒾𝒷𝑒✿',  
-    coverSong: 'User not post any songs',  
-    songLink: '#',  
-    songScore: 0,  
-    totalScore: 0,  
-    id: 12  
-  },  
-  {  
-    profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/2533274792559112/profile.jpg?ts=1750000002',  
-    username: '⚔️Knight_Of_Sounds⚔️',  
-    coverSong: 'User not post any songs',  
-    songLink: '#',  
-    songScore: 0,  
-    totalScore: 0,  
-    id: 13  
-  },  
-  {  
-    profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/2533274792559113/profile.jpg?ts=1750000002',  
-    username: '🌙Lunar_Serenity🌙',  
-    coverSong: 'User not post any songs',  
-    songLink: '#',  
-    songScore: 0,  
-    totalScore: 0,  
-    id: 14  
-  },  
-  {  
-    profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/2533274792559114/profile.jpg?ts=1750000002',  
-    username: '🔥𝓕𝓲𝓻𝓮𝓑𝓻𝓮𝓪𝓴𝓮𝓻🔥',  
-    coverSong: 'User not post any songs',  
-    songLink: '#',  
-    songScore: 0,  
-    totalScore: 0,  
-    id: 15  
-  },  
-  {  
-    profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/2533274792559115/profile.jpg?ts=1750000002',  
-    username: '💎𝒢𝓁𝒾𝓉𝓉𝑒𝓇_𝒮𝑜𝓊𝓁💎',  
-    coverSong: 'User not post any songs',  
-    songLink: '#',  
-    songScore: 0,  
-    totalScore: 0,  
-    id: 16  
-  },  
-  {  
-    profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/2533274792559116/profile.jpg?ts=1750000002',  
-    username: '🦋Eternal_Voice🦋',  
-    coverSong: 'User not post any songs',  
-    songLink: '#',  
-    songScore: 0,  
-    totalScore: 0,  
-    id: 17  
-  },  
-  {  
-    profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/2533274792559117/profile.jpg?ts=1750000002',  
-    username: '⚡️𝕋𝕙𝕦𝕟𝕕𝕖𝕣𝕃𝕚𝕥⚡️',  
-    coverSong: 'User not post any songs',  
-    songLink: '#',  
-    songScore: 0,  
-    totalScore: 0,  
-    id: 18  
-  },  
-  {  
-    profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/2533274792559118/profile.jpg?ts=1750000002',  
-    username: '🌹𝓡𝓸𝔂𝓪𝓵_𝓡𝓸𝓶𝓪𝓷𝓬𝓮🌹',  
-    coverSong: 'User not post any songs',  
-    songLink: '#',  
-    songScore: 0,  
-    totalScore: 0,  
-    id: 19  
-  },  
-  {  
-    profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/2533274792559119/profile.jpg?ts=1750000002',  
-    username: '☯︎Zen_Harmony☯︎',  
-    coverSong: 'User not post any songs',  
-    songLink: '#',  
-    songScore: 0,  
-    totalScore: 0,  
-    id: 20  
-  } ,
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  ];
+//cs software-bot users----------------
+            { profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/13510798885031861/profile.jpg?ts=1635988001', username: '👑Queen_of_Melody👑', coverSong: 'Un Perai Sollum Podhe', songLink: '#', songScore: 67.50, totalScore: 0, sid: '1234567890', id: 2},
+            { profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/13510798885031862/profile.jpg?ts=1635988001', username: '🎶SingingStar_PK🎶', coverSong: 'Mazhai Nindrum Illai', songLink: '#', songScore: 55.20, totalScore: 0, sid: '9876543210', id: 3},
+            { profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/13510798885031863/profile.jpg?ts=1635988001', username: 'Voice_of_Tamil', coverSong: 'Muthal Murai', songLink: '#', songScore: 55.90, totalScore: 0, sid: '1122334455', id: 4},
+        ];
 
         // --- GLOBAL CONSTANTS ---
         const EVENT_END_DATE = new Date('October 14, 2025 12:00:00 PM').getTime();
@@ -572,7 +381,7 @@
 
             // Deactivate all tabs
             document.querySelectorAll('button[id^="tab-"]').forEach(tab => {
-                tab.classList.remove('border-violet-500', 'text-slate-800', 'border-b-2');
+                tab.classList.remove('border-violet-500', 'text-slate-800', 'border-b-4');
                 tab.classList.add('text-violet-600', 'border-transparent');
             });
 
@@ -585,7 +394,7 @@
             // Activate the selected tab
             const selectedTab = document.getElementById(`tab-${tabName}`);
             if (selectedTab) {
-                selectedTab.classList.add('border-violet-500', 'text-slate-800');
+                selectedTab.classList.add('border-violet-500', 'text-slate-800', 'border-b-4');
                 selectedTab.classList.remove('text-violet-600', 'border-transparent');
             }
         }
@@ -632,8 +441,12 @@
             }
         });
 
-        // --- RANKING LOGIC (REFRESHED FOR NEW LAYOUT) ---
+        // 1st Place Gift Box Handler
+        function claimReward(username, amount) {
+            showModal('Reward Claimed! 🎁', `${username} will receive the 1st place prize: ${amount} Starmaker gold coins! Please check your Starmaker messages for confirmation.`);
+        }
 
+        // --- RANKING LOGIC ---
         function renderRanking() {
             const rankingList = document.getElementById('ranking-list');
             
@@ -641,7 +454,7 @@
             const rankedData = initialRankingData
                 .map(user => ({
                     ...user,
-                    combinedScore: user.songScore + user.totalScore
+                    combinedScore: (user.songScore + user.totalScore).toFixed(2) // Format score to 2 decimal places
                 }))
                 .sort((a, b) => b.combinedScore - a.combinedScore); // Descending order
 
@@ -653,7 +466,7 @@
                 const isFirst = rank === 1;
 
                 // Determine base styling
-                let cardClasses = 'flex items-center p-3 rounded-xl transition duration-300 transform hover:scale-[1.01] shadow-md border-2 border-gray-200';
+                let cardClasses = 'flex items-stretch p-3 rounded-xl transition duration-300 transform hover:scale-[1.01] shadow-md border-2 border-gray-200';
 
                 if (isFirst) {
                     cardClasses += ' rank-1'; // Custom gold styling
@@ -663,54 +476,54 @@
                     cardClasses += ' bg-white';
                 }
 
-                // --- GIFT BOX SVG ---
+                // --- GIFT BOX SVG (Only for Rank 1) ---
                 const giftBoxSvg = `
-                    <div onclick="claimReward('${user.username}', ${REWARD_AMOUNT})" class="gift-box ml-1 p-1 rounded-full bg-violet-600 hover:bg-violet-700 text-white flex-shrink-0" title="Claim Prize!">
-                        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <div onclick="claimReward('${user.username}', ${REWARD_AMOUNT})" class="gift-box ml-1 p-1 rounded-full flex-shrink-0" title="Claim Prize!">
+                        <svg class="w-4 h-4 sm:w-5 sm:h-5 text-yellow-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M5.404 14.596A6.5 6.5 0 0110 8V2a.5.5 0 011 0v6a6.5 6.5 0 014.596 6.596A.5.5 0 0115 15.5H5a.5.5 0 01-.596-.404zM16 17H4a1 1 0 010-2h12a1 1 0 010 2z" clip-rule="evenodd"></path>
                             <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
                         </svg>
                     </div>
                 `;
 
-                // --- RANKING ENTRY HTML (NEW TWO-ROW STRUCTURE) ---
+                // --- RANKING ENTRY HTML ---
                 const entryHTML = `
                     <div class="${cardClasses}">
                         
                         <div class="w-1/12 text-center flex flex-col items-center justify-center space-y-1 flex-shrink-0">
-                            <span class="text-xl sm:text-2xl font-black ${isFirst ? 'text-yellow-500' : isTop3 ? 'text-violet-600' : 'text-gray-600'}">${rank}</span>
+                            <span class="text-xl sm:text-2xl font-black ${isFirst ? 'text-yellow-600' : isTop3 ? 'text-violet-600' : 'text-gray-600'}">${rank}</span>
                             ${isFirst ? giftBoxSvg : ''}
                         </div>
 
-                        <div class="w-8/12 flex flex-col justify-center pl-2">
+                        <div class="w-6/12 flex flex-col justify-center pl-2 pr-1 border-r border-dashed border-gray-300">
                             <div class="flex items-center space-x-2 mb-1">
                                 <img src="${user.profilePic}" alt="${user.username} Profile" class="w-8 h-8 rounded-full object-cover border border-gray-300 flex-shrink-0">
                                 <span class="text-sm sm:text-base font-bold text-slate-800 truncate">${user.username}</span>
                             </div>
                             
-                            <div class="flex items-center justify-between space-x-2 pr-1">
-                                <p class="text-xs sm:text-sm font-medium text-gray-600 truncate">${user.coverSong}</p>
+                            <div class="flex items-center justify-between space-x-2">
+                                <p class="text-xs sm:text-sm font-medium text-gray-600 truncate italic">${user.coverSong}</p>
                                 <a href="${user.songLink}" target="_blank" title="Play Song: ${user.coverSong}" class="play-icon text-violet-600 hover:text-blue-600 flex-shrink-0">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
                                 </a>
                             </div>
+                        </div>
 
+                        <div class="w-2/12 text-center flex-col items-center justify-center flex-shrink-0 hidden sm:flex border-r border-dashed border-gray-300">
+                            <span class="text-xs font-mono text-gray-500 cursor-pointer hover:text-blue-500" title="User Starmaker ID (SID)">
+                                ${user.sid}
+                            </span>
                         </div>
 
                         <div class="w-3/12 text-center flex flex-col items-center justify-center flex-shrink-0">
                             <span class="text-xl font-extrabold ${isFirst ? 'text-yellow-600' : 'text-green-600'}">${user.combinedScore}</span>
                             <span class="text-xs text-gray-500">Pts</span>
-                            <span class="text-xs text-gray-400 hidden sm:block">(${user.songScore}+${user.totalScore})</span>
+                            <span class="text-xs text-gray-400 hidden lg:block">(${user.songScore.toFixed(2)}+${user.totalScore.toFixed(2)})</span>
                         </div>
                     </div>
                 `;
                 rankingList.innerHTML += entryHTML;
             });
-        }
-
-        // 1st Place Gift Box Handler
-        function claimReward(username, amount) {
-            showModal('Reward Claimed!', `${username} will be claim the 1st place prize & will got : ${amount} gold coins!`);
         }
 
         // Run the ranking rendering when the DOM is ready
