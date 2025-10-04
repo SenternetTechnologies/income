@@ -353,7 +353,6 @@
 { profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/4222124657577578/profile.jpg?ts=1759381206', username: '𝒯𝒩46᚛𐑖𝙞ŏ𝐧𝅘𝅥𝅯𝘣ŏ𝒚࿐', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0, sid:'62147731983',id: 2 },
 
 
-
 { profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/4222124659869391/profile.jpg?ts=1758818778', username: '𒆜✰💖҉⃢நிழல்✰𒆜', coverSong: 'User not post any songs', songLink: '#', songScore: 0, totalScore: 0, sid:'100064542743',id: 2 },
 
 
@@ -378,11 +377,25 @@
 
 
 
+
+
 //cs software-bot users----------------
             { profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/13510798885031861/profile.jpg?ts=1635988001', username: '👑Queen_of_Melody👑', coverSong: 'Un Perai Sollum Podhe', songLink: '#', songScore: 67.50, totalScore: 0, sid: '1234567890', id: 2},
             { profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/13510798885031862/profile.jpg?ts=1635988001', username: '🎶SingingStar_PK🎶', coverSong: 'Mazhai Nindrum Illai', songLink: '#', songScore: 55.20, totalScore: 0, sid: '9876543210', id: 3},
             { profilePic: 'https://improxy.starmakerstudios.com/tools/im/200/production/users/13510798885031863/profile.jpg?ts=1635988001', username: 'Voice_of_Tamil', coverSong: 'Muthal Murai', songLink: '#', songScore: 55.90, totalScore: 0, sid: '1122334455', id: 4},
         ];
+
+
+
+
+
+
+
+
+
+
+
+
 
         // --- GLOBAL CONSTANTS ---
         const EVENT_END_DATE = new Date('October 14, 2025 12:00:00 PM').getTime();
@@ -550,7 +563,7 @@
                             </div>
                         </div>
 
-                        <div class="w-2/12 text-center flex-col items-center justify-center flex-shrink-0 hidden sm:flex border-r border-dashed border-gray-300">
+                        <div class="w-2/12 text-center flex-col items-center justify-center flex-shrink-0 sm:flex border-r border-dashed border-gray-300">
                             <span class="text-xs font-mono text-gray-500 cursor-pointer hover:text-blue-500" title="User Starmaker ID (SID)">
                                 ${user.sid}
                             </span>
@@ -559,7 +572,7 @@
                         <div class="w-3/12 text-center flex flex-col items-center justify-center flex-shrink-0">
                             <span class="text-xl font-extrabold ${isFirst ? 'text-yellow-600' : 'text-green-600'}">${user.combinedScore}</span>
                             <span class="text-xs text-gray-500">Pts</span>
-                            <span class="text-xs text-gray-400 hidden lg:block">(${user.songScore.toFixed(2)}+${user.totalScore.toFixed(2)})</span>
+                            <span class="text-xs text-gray-400  lg:block">(${user.songScore.toFixed(2)}+${user.totalScore.toFixed(2)})</span>
                         </div>
                     </div>
                 `;
