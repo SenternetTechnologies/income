@@ -261,6 +261,143 @@
                     <p class="text-sm text-gray-600 mt-1">Dedicated to promoting emerging cover song talent globally.</p>
                 </div>
             </div>
+             <script>
+        // --- DATA SECTION ---
+        // This is where your pre-entered user and certificate data resides.
+        // Replace the placeholder URLs with actual user picture links and Canva certificate links.
+        const certificateData = [
+            {
+                id: '1001',
+                name: 'Anjali Sharma',
+                picture: 'https://placehold.co/100x100/3B82F6/ffffff?text=AS',
+                certificateUrl: 'https://example.com/certificate/anjali_sharma_1001.pdf' // Replace with actual Canva/PDF link
+            },
+            {
+                id: '1002',
+                name: 'Babu Rao',
+                picture: 'https://placehold.co/100x100/10B981/ffffff?text=BR',
+                certificateUrl: 'https://example.com/certificate/babu_rao_1002.pdf'
+            },
+            {
+                id: '1003',
+                name: 'Chandni Singh',
+                picture: 'https://placehold.co/100x100/F59E0B/ffffff?text=CS',
+                certificateUrl: 'https://example.com/certificate/chandni_singh_1003.pdf'
+            },
+            {
+                id: '1004',
+                name: 'Dilip Kumar',
+                picture: 'https://placehold.co/100x100/EF4444/ffffff?text=DK',
+                certificateUrl: 'https://example.com/certificate/dilip_kumar_1004.pdf'
+            },
+            {
+                id: '1005',
+                name: 'Esha Gupta',
+                picture: 'https://placehold.co/100x100/8B5CF6/ffffff?text=EG',
+                certificateUrl: 'https://example.com/certificate/esha_gupta_1005.pdf'
+            },
+            {
+                id: '1006',
+                name: 'Farhan Zaidi',
+                picture: 'https://placehold.co/100x100/06B6D4/ffffff?text=FZ',
+                certificateUrl: 'https://example.com/certificate/farhan_zaidi_1006.pdf'
+            },
+            // Add more user records here following the same structure
+        ];
+
+        // --- UTILITY FUNCTION ---
+
+        /**
+         * Safely attempts to open the certificate URL in a new window/tab.
+         * @param {string} url The URL of the certificate.
+         * @param {string} name The name of the user for console logging.
+         */
+        function downloadCertificate(url, name) {
+            console.log(`Attempting to open certificate for ${name} at URL: ${url}`);
+            
+            // Open the URL in a new tab. This is the standard way to handle 
+            // downloads from external/Canva links in a client-side web application.
+            try {
+                window.open(url, '_blank');
+            } catch (error) {
+                console.error("Failed to open certificate link:", error);
+                // Simple feedback to the user if the browser blocks the pop-up (unlikely for user interaction)
+                alert(`Error opening certificate for ${name}. Please check the console for details.`);
+            }
+        }
+
+        // --- RENDERING FUNCTION ---
+
+        /**
+         * Renders the certificate cards onto the page.
+         */
+        function renderCertificateCards() {
+            const grid = document.getElementById('certificate-grid');
+            grid.innerHTML = ''; // Clear existing content
+
+            certificateData.forEach(user => {
+                // Create the main card container (The "user box")
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center transition duration-300 ease-in-out transform hover:shadow-xl hover:-translate-y-1 border border-indigo-100';
+                
+                // Add content to the card
+                card.innerHTML = `
+                    <!-- User Picture -->
+                    <img src="${user.picture}" 
+                         alt="${user.name}'s Profile Picture" 
+                         class="w-24 h-24 object-cover rounded-full ring-4 ring-indigo-300 mb-4"
+                         onerror="this.onerror=null; this.src='https://placehold.co/100x100/6366f1/ffffff?text=User';"
+                    >
+                    
+                    <!-- Username -->
+                    <h2 class="text-xl font-bold text-gray-900 mb-1">${user.name}</h2>
+                    
+                    <!-- User ID -->
+                    <p class="text-sm font-medium text-indigo-500 mb-4">ID: ${user.id}</p>
+                    
+                    <!-- Download Button -->
+                    <button id="download-btn-${user.id}" 
+                            class="mt-auto w-full px-4 py-2 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-75 transition duration-150 ease-in-out active:bg-indigo-800"
+                            data-url="${user.certificateUrl}"
+                            data-name="${user.name}">
+                        View / Download Certificate
+                    </button>
+                `;
+
+                grid.appendChild(card);
+            });
+
+            // --- EVENT LISTENERS ---
+            // Attach the click event listener to all "View/Download" buttons
+            certificateData.forEach(user => {
+                const button = document.getElementById(`download-btn-${user.id}`);
+                if (button) {
+                    button.addEventListener('click', (event) => {
+                        const url = event.currentTarget.getAttribute('data-url');
+                        const name = event.currentTarget.getAttribute('data-name');
+                        downloadCertificate(url, name);
+                    });
+                }
+            });
+        }
+
+        // Initialize the app on page load
+        window.onload = renderCertificateCards;
+
+    </script>
+
+            <header class="text-center mb-10">
+        <h1 class="text-4xl font-extrabold text-gray-800 tracking-tight mb-2">
+            Certificate Download Center
+        </h1>
+        <p class="text-xl text-indigo-600 font-medium">
+            Select a user below to view and download their certificate.
+        </p><marquee>Eligible users Certificates here When your song Entered our event</marquee>
+    </header>
+
+    <div id="certificate-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        <!-- Certificate cards will be injected here by JavaScript -->
+    </div>
         </div>
 
         <div id="content-ranking" class="tab-content hidden space-y-4">
