@@ -614,22 +614,20 @@
 
 
 
-
-         // --- DATA SECTION ---
-        // This is where your pre-entered user and certificate data resides.
-        // Replace the placeholder URLs with actual user picture links and Canva certificate links.
+ // --- DATA SECTION ---
+        // Updated file names to be sequential (1.pdf to 11.pdf) and corrected the initial URLs
         const certificateData = [
             {
                 id: '13369361237',
                 name: '࿐❥͜ƑαιяуƑяєѕн•⃢🧸',
                 picture: 'https://placehold.co/100x100/3B82F6/ffffff?text=AS',
-                certificateUrl: 'https://cover-event-oct-2025-6.tiiny.site'
+                certificateUrl: '1.pdf' // Sequential file name
             },
             {
                 id: '100000955676',
-                name: '𓆰፝֟͜͡🇰ᴀᴠʏᴀ_🇻ɪᴊᴀʏ🧡࿐',
+                name: '𓆰፝֟͜͡🇰ᴀᴠʏᴀ_🇻ɪᴊᴀʏ🧡࿐',
                 picture: 'https://placehold.co/100x100/10B981/ffffff?text=BR',
-                certificateUrl: 'https://cover-event-oct-2025-6.tiiny.site'
+                certificateUrl: '2.pdf' // Sequential file name
             },
             {
                 id: '13328698733',
@@ -645,7 +643,7 @@
             },
             {
                 id: '13357975976',
-                name: '🩵😉➻❥🅲🅤🅣︎🅴👸🏻🅷🅐🅡🅸🆃🅷🅐❥🩵',
+                name: '🩵😉➻❥🅲🅤🅣︎🅴👸🏻🅷🅐🅡🅸🅣🅷🅐❥🩵',
                 picture: 'https://placehold.co/100x100/8B5CF6/ffffff?text=EG',
                 certificateUrl: '5.pdf'
             },
@@ -653,33 +651,33 @@
                 id: '100049514901',
                 name: '꧁☆☬🔥RAKHI🔥☬☆🔥007꧂',
                 picture: 'https://placehold.co/100x100/06B6D4/ffffff?text=FZ',
-                certificateUrl: 'https://cover-event-oct-2025-6.tiiny.site'
+                certificateUrl: '6.pdf' // Sequential file name
             },
-             {
+            {
                 id: '62101916111',
                 name: '⸙𝗞ᴀʏᴀʟᴜ💜𝐇ᴇᴀ֟፝ʀ𝐓',
                 picture: 'https://placehold.co/100x100/06B6D4/ffffff?text=FZ',
                 certificateUrl: '7.pdf'
             },
-             {
+            {
                 id: '100021082445',
                 name: '✮⃝💚SYEDALI✮⃝💚',
                 picture: 'https://placehold.co/100x100/06B6D4/ffffff?text=FZ',
                 certificateUrl: '8.pdf'
             },
-             {
+            {
                 id: '62183855493',
                 name: '🦋⃟🐣𝙹𝚎𝚜𝚜𝚕𝚢࿐',
                 picture: 'https://placehold.co/100x100/06B6D4/ffffff?text=FZ',
                 certificateUrl: '9.pdf'
             },
-             {
+            {
                 id: '62134518348',
                 name: '༄ᶦᶰᵈ᭄𝖉𝖆𝖗𝖐👿𝖆𝖓𝖌𝖊𝖑❥❥═══',
                 picture: 'https://placehold.co/100x100/06B6D4/ffffff?text=FZ',
                 certificateUrl: '10.pdf'
             },
-             {
+            {
                 id: '62143158031',
                 name: '✨🏏❤️✨💫🖤🖤𝖏σk🅔︎R̊🥳',
                 picture: 'https://placehold.co/100x100/06B6D4/ffffff?text=FZ',
@@ -688,24 +686,73 @@
             // Add more user records here following the same structure
         ];
 
-        // --- UTILITY FUNCTION ---
+        // --- CUSTOM MESSAGE FUNCTION (Replaces alert()) ---
 
         /**
-         * Safely attempts to open the certificate URL in a new window/tab.
-         * @param {string} url The URL of the certificate.
-         * @param {string} name The name of the user for console logging.
+         * Displays a custom, temporary message notification.
+         * @param {string} message The message to display.
+         * @param {string} type 'success' or 'error' to determine styling.
+         */
+        function showMessage(message, type) {
+            const modal = document.getElementById('message-modal');
+            const text = document.getElementById('message-text');
+
+            if (!modal || !text) return;
+
+            text.textContent = message;
+
+            // Reset classes
+            modal.className = 'p-4 rounded-lg shadow-2xl max-w-sm w-full';
+            
+            if (type === 'error') {
+                modal.classList.add('bg-red-500', 'text-white');
+            } else {
+                modal.classList.add('bg-green-500', 'text-white');
+            }
+
+            // Show modal
+            modal.classList.add('show');
+
+            // Hide modal after 4 seconds
+            setTimeout(() => {
+                modal.classList.remove('show');
+            }, 4000);
+        }
+
+        // --- UTILITY FUNCTION (DOWNLOAD LOGIC) ---
+
+        /**
+         * Triggers the automatic download of the certificate file using a hidden anchor tag.
+         * @param {string} url The URL of the certificate (e.g., '1.pdf').
+         * @param {string} name The name of the user.
          */
         function downloadCertificate(url, name) {
-            console.log(`Attempting to open certificate for ${name} at URL: ${url}`);
+            console.log(`Attempting to download certificate for ${name} from URL: ${url}`);
             
-            // Open the URL in a new tab. This is the standard way to handle 
-            // downloads from external/Canva links in a client-side web application.
             try {
-                window.open(url, '_blank');
+                // 1. Create a temporary anchor element
+                const link = document.createElement('a');
+                link.href = url;
+                
+                // 2. Set the 'download' attribute to force the browser to download the file
+                // and give it a descriptive name.
+                // Replaces non-alphanumeric characters in the name for a clean filename
+                const cleanName = name.replace(/[^a-zA-Z0-9]/g, ''); 
+                const filename = `Certificate-${cleanName}.pdf`; 
+                link.setAttribute('download', filename);
+                
+                // 3. Append to the document body, simulate a click, and remove it immediately
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                // Show success message (The browser handles the download prompt/status)
+                showMessage(`Download initiated for ${name}'s certificate!`, 'success');
+                
             } catch (error) {
-                console.error("Failed to open certificate link:", error);
-                // Simple feedback to the user if the browser blocks the pop-up (unlikely for user interaction)
-                alert(`Error opening certificate for ${name}. Please check the console for details.`);
+                console.error("Failed to initiate certificate download:", error);
+                // Using custom message box instead of alert
+                showMessage(`Error initiating download for ${name}. Please check the console.`, 'error');
             }
         }
 
@@ -727,9 +774,9 @@
                 card.innerHTML = `
                     <!-- User Picture -->
                     <img src="${user.picture}" 
-                         alt="${user.name}'s Profile Picture" 
-                         class="w-24 h-24 object-cover rounded-full ring-4 ring-indigo-300 mb-4"
-                         onerror="this.onerror=null; this.src='https://placehold.co/100x100/6366f1/ffffff?text=User';"
+                        alt="${user.name}'s Profile Picture" 
+                        class="w-24 h-24 object-cover rounded-full ring-4 ring-indigo-300 mb-4"
+                        onerror="this.onerror=null; this.src='https://placehold.co/100x100/6366f1/ffffff?text=User';"
                     >
                     
                     <!-- Username -->
@@ -743,7 +790,7 @@
                             class="mt-auto w-full px-4 py-2 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-75 transition duration-150 ease-in-out active:bg-indigo-800"
                             data-url="${user.certificateUrl}"
                             data-name="${user.name}">
-                        View / Download Certificate
+                        Download Certificate (PDF)
                     </button>
                 `;
 
@@ -751,7 +798,7 @@
             });
 
             // --- EVENT LISTENERS ---
-            // Attach the click event listener to all "View/Download" buttons
+            // Attach the click event listener to all "Download" buttons
             certificateData.forEach(user => {
                 const button = document.getElementById(`download-btn-${user.id}`);
                 if (button) {
@@ -766,7 +813,6 @@
 
         // Initialize the app on page load
         window.onload = renderCertificateCards;
-
     </script>
 </body>
 </html>
