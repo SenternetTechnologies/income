@@ -627,6 +627,8 @@
 
  // --- DATA SECTION ---
         // Updated file names to be sequential (1.pdf to 11.pdf) and corrected the initial URLs
+      // --- DATA SECTION ---
+        // Updated with new profile picture URLs
         const certificateData = [
             {
                 id: '13369361237',
@@ -748,6 +750,7 @@
                 // 2. Set the 'download' attribute to force the browser to download the file
                 // and give it a descriptive name.
                 // Replaces non-alphanumeric characters in the name for a clean filename
+                // The download attribute is the key to forcing the download behaviour.
                 const cleanName = name.replace(/[^a-zA-Z0-9]/g, ''); 
                 const filename = `Certificate-${cleanName}.pdf`; 
                 link.setAttribute('download', filename);
